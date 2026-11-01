@@ -1,0 +1,6253 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArionZ Chess AI</title>
+    <meta name="description" content="ArionZ Chess AI - Learn, Play, Analyze and Master Chess with AI.">
+    <meta name="theme-color" content="#080d12">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">A</div>
+            <div class="brand-text">
+                <h2>ARIONZ</h2>
+                <span>CHESS AI</span>
+            </div>
+        </div>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">C</div>
+            <div>
+                <h4>Chess Player</h4>
+                <span>Beginner Level</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <div class="nav-section-title">WORKSPACE</div>
+
+            <button class="nav-item active" data-page="dashboard"><span>⌂</span> Dashboard</button>
+            <button class="nav-item" data-page="play"><span>♟</span> Chess Arena</button>
+            <button class="nav-item" data-page="learn"><span>▤</span> Learn Chess</button>
+            <button class="nav-item" data-page="rules"><span>♜</span> Chess Rules</button>
+            <button class="nav-item" data-page="openings"><span>♞</span> Opening Explorer</button>
+            <button class="nav-item" data-page="mistakes"><span>⚠</span> Mistakes & Solutions</button>
+            <button class="nav-item" data-page="smartmoves"><span>✦</span> Smart Moves</button>
+            <button class="nav-item" data-page="puzzles"><span>◇</span> Puzzle Training</button>
+
+            <div class="nav-section-title">PERFORMANCE</div>
+
+            <button class="nav-item" data-page="analysis"><span>⌕</span> Game Analysis</button>
+            <button class="nav-item" data-page="history"><span>◷</span> Game History</button>
+            <button class="nav-item" data-page="progress"><span>↗</span> My Progress</button>
+            <button class="nav-item" data-page="achievements"><span>★</span> Achievements</button>
+            <button class="nav-item" data-page="leaderboard"><span>♛</span> Leaderboard</button>
+
+            <div class="nav-section-title">COMMUNITY</div>
+
+            <button class="nav-item" data-page="friends"><span>♙</span> Friends</button>
+            <button class="nav-item" data-page="tournaments"><span>🏆</span> Tournaments</button>
+
+            <div class="nav-section-title">ACCOUNT</div>
+
+            <button class="nav-item" data-page="profile"><span>◎</span> Profile & Settings</button>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="system-status">
+                <span class="status-dot"></span>
+                System Online
+            </div>
+            <p>ARIONZ CHESS AI v1.0</p>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+
+                <div class="page-heading">
+                    <h1 id="pageTitle">Dashboard</h1>
+                    <p id="pageSubtitle">Your personal chess command center.</p>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <button class="icon-button" id="notificationButton">♧</button>
+                <button class="icon-button" id="themeToggle">◐</button>
+
+                <div class="topbar-profile">
+                    <div class="user-avatar small">C</div>
+                    <span>Player</span>
+                </div>
+            </div>
+
+        </header>
+
+
+        <div class="page-container">
+
+
+        <!-- =================================
+             PAGE 1 : DASHBOARD
+        ================================== -->
+
+        <section class="page active" id="page-dashboard">
+
+            <div class="welcome-section">
+                <div>
+                    <span class="eyebrow">WELCOME TO ARIONZ CHESS AI</span>
+                    <h2>Think Better. Play Smarter.</h2>
+                    <p>Your personal AI-powered chess learning and training platform.</p>
+                </div>
+                <div class="welcome-icon">♛</div>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span class="stat-label">CHESS RATING</span>
+                    <h2 id="dashboardRating">--</h2>
+                    <p>Rating tracking coming soon</p>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">GAMES PLAYED</span>
+                    <h2 id="dashboardGames">0</h2>
+                    <p>Total recorded games</p>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">PUZZLES SOLVED</span>
+                    <h2 id="dashboardPuzzles">0</h2>
+                    <p>Training performance</p>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">LEARNING STREAK</span>
+                    <h2 id="dashboardStreak">0 Days</h2>
+                    <p>Keep learning daily</p>
+                </div>
+
+            </div>
+
+            <div class="section-heading">
+                <div>
+                    <h2>Quick Actions</h2>
+                    <p>Choose what you want to do today.</p>
+                </div>
+            </div>
+
+            <div class="quick-actions-grid">
+
+                <button class="action-card" data-goto="play">
+                    <span class="action-icon">♟</span>
+                    <h3>Play Chess</h3>
+                    <p>Start a new chess game.</p>
+                </button>
+
+                <button class="action-card" data-goto="learn">
+                    <span class="action-icon">▤</span>
+                    <h3>Learn Chess</h3>
+                    <p>Improve your chess knowledge.</p>
+                </button>
+
+                <button class="action-card" data-goto="puzzles">
+                    <span class="action-icon">◇</span>
+                    <h3>Solve Puzzles</h3>
+                    <p>Train your tactical skills.</p>
+                </button>
+
+                <button class="action-card" data-goto="analysis">
+                    <span class="action-icon">⌕</span>
+                    <h3>Analyze Game</h3>
+                    <p>Understand your performance.</p>
+                </button>
+
+            </div>
+
+            <div class="dashboard-grid">
+
+                <div class="content-card">
+                    <div class="section-heading">
+                        <div>
+                            <h2>Continue Learning</h2>
+                            <p>Build your chess knowledge.</p>
+                        </div>
+                    </div>
+
+                    <div class="learning-placeholder">
+                        <div class="placeholder-icon">♞</div>
+                        <h3>Your learning journey starts here</h3>
+                        <p>Explore chess rules, openings, strategies and tactical patterns.</p>
+                        <button class="primary-button" data-goto="learn">Explore Lessons →</button>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <div class="section-heading">
+                        <div>
+                            <h2>AI Chess Coach</h2>
+                            <p>Your personal learning assistant.</p>
+                        </div>
+                        <span class="ai-status">READY</span>
+                    </div>
+
+                    <div class="coach-preview">
+                        <div class="coach-avatar">AI</div>
+                        <div>
+                            <h3>ArionZ AI Coach</h3>
+                            <p>Learn chess concepts, understand positions and improve your decisions.</p>
+                        </div>
+                    </div>
+
+                    <button class="secondary-button" data-goto="play">Open Chess Assistant →</button>
+                </div>
+
+            </div>
+
+            <div class="content-card daily-goals">
+                <div class="section-heading">
+                    <div>
+                        <h2>Today's Chess Goals</h2>
+                        <p>Small steps toward becoming a better player.</p>
+                    </div>
+                </div>
+
+                <div class="goal-list">
+
+                    <div class="goal-item">
+                        <span>01</span>
+                        <div>
+                            <h4>Learn one chess concept</h4>
+                            <p>Understand something new.</p>
+                        </div>
+                        <span class="goal-status">PENDING</span>
+                    </div>
+
+                    <div class="goal-item">
+                        <span>02</span>
+                        <div>
+                            <h4>Solve five chess puzzles</h4>
+                            <p>Practice tactical thinking.</p>
+                        </div>
+                        <span class="goal-status">PENDING</span>
+                    </div>
+
+                    <div class="goal-item">
+                        <span>03</span>
+                        <div>
+                            <h4>Play one complete game</h4>
+                            <p>Apply what you have learned.</p>
+                        </div>
+                        <span class="goal-status">PENDING</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             PAGE 2 : CHESS ARENA
+        ================================== -->
+
+        <section class="page" id="page-play">
+
+            <div class="arena-header">
+                <div>
+                    <span class="eyebrow">CHESS ARENA</span>
+                    <h2>Enter the Chessboard.</h2>
+                    <p>Play, think, learn and improve every move.</p>
+                </div>
+                <div class="arena-status">
+                    <span class="status-dot"></span>
+                    LOCAL GAME MODE
+                </div>
+            </div>
+
+            <div class="content-card mode-card">
+                <div class="section-heading">
+                    <div>
+                        <h2>Choose Your Game Mode</h2>
+                        <p>Select how you want to learn and play.</p>
+                    </div>
+                </div>
+
+                <div class="mode-grid">
+
+                    <button class="mode-option active" data-mode="play">
+                        <span class="mode-icon">♟</span>
+                        <h3>Play & Analyze</h3>
+                        <p>Play your complete game and review it afterward.</p>
+                        <span class="mode-tag">GAME FIRST</span>
+                    </button>
+
+                    <button class="mode-option" data-mode="live">
+                        <span class="mode-icon">✦</span>
+                        <h3>Live Coach</h3>
+                        <p>Get learning guidance while playing your game.</p>
+                        <span class="mode-tag">LIVE LEARNING</span>
+                    </button>
+
+                    <button class="mode-option" data-mode="learn">
+                        <span class="mode-icon">▤</span>
+                        <h3>Learn First</h3>
+                        <p>Understand chess concepts before starting a match.</p>
+                        <span class="mode-tag">LEARN FIRST</span>
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="arena-layout">
+
+                <div class="arena-board-section">
+
+                    <div class="content-card board-card">
+
+                        <div class="player-info opponent-info">
+                            <div class="player-avatar">AI</div>
+                            <div class="player-details">
+                                <h3>Opponent</h3>
+                                <p id="opponentLabel">Local Player</p>
+                            </div>
+                            <div class="player-rating">
+                                <span>RATING</span>
+                                <strong>---</strong>
+                            </div>
+                        </div>
+
+                        <div class="turn-indicator" id="turnIndicator">
+                            <span class="turn-dot"></span>
+                            White to move
+                        </div>
+
+                        <div class="board-wrapper">
+
+                            <div class="board-coordinates files-top">
+                                <span>a</span><span>b</span><span>c</span><span>d</span>
+                                <span>e</span><span>f</span><span>g</span><span>h</span>
+                            </div>
+
+                            <div class="board-main">
+                                <div class="board-coordinates ranks-left">
+                                    <span>8</span><span>7</span><span>6</span><span>5</span>
+                                    <span>4</span><span>3</span><span>2</span><span>1</span>
+                                </div>
+                                <div class="chessboard" id="chessboard" aria-label="Interactive chessboard"></div>
+                            </div>
+
+                            <div class="board-coordinates files-bottom">
+                                <span>a</span><span>b</span><span>c</span><span>d</span>
+                                <span>e</span><span>f</span><span>g</span><span>h</span>
+                            </div>
+
+                        </div>
+
+                        <div class="player-info current-player-info">
+                            <div class="player-avatar">C</div>
+                            <div class="player-details">
+                                <h3>You</h3>
+                                <p>White Player</p>
+                            </div>
+                            <div class="player-rating">
+                                <span>RATING</span>
+                                <strong>---</strong>
+                            </div>
+                        </div>
+
+                        <div class="board-controls">
+                            <button class="secondary-button" id="previousMove">◀</button>
+                            <button class="secondary-button" id="undoMove">↶ Undo</button>
+                            <button class="secondary-button" id="nextMove">▶</button>
+                            <button class="secondary-button" id="flipBoard">⇅ Flip</button>
+                        </div>
+
+                        <div class="game-actions">
+                            <button class="primary-button" id="newGameButton">+ New Game</button>
+                            <button class="secondary-button" id="restartGame">↻ Restart</button>
+                            <button class="secondary-button" id="resignButton">Resign</button>
+                        </div>
+
+                    </div>
+
+                    <div class="content-card captured-card">
+                        <h3>Captured Pieces</h3>
+                        <div class="captured-row">
+                            <span>White captured</span>
+                            <strong id="whiteCaptured">—</strong>
+                        </div>
+                        <div class="captured-row">
+                            <span>Black captured</span>
+                            <strong id="blackCaptured">—</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="arena-side-panel">
+
+                    <div class="content-card coach-card">
+
+                        <div class="coach-header">
+                            <div class="coach-avatar">AI</div>
+                            <div>
+                                <h3>ArionZ AI Coach</h3>
+                                <span class="coach-online">
+                                    <span class="status-dot"></span>
+                                    Assistant interface
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="coach-context">
+                            <span class="eyebrow">CURRENT MODE</span>
+                            <p id="coachContextText">Play & Analyze</p>
+                        </div>
+
+                        <div class="chat-messages" id="chatMessages" aria-live="polite">
+                            <div class="chat-message ai-message">
+                                <div class="message-avatar">AI</div>
+                                <div class="message-content">
+                                    <span>ARIONZ AI</span>
+                                    <p>Welcome to Chess Arena! Start a game and I will help you understand chess.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quick-prompts">
+                            <button class="prompt-button" data-prompt="Explain the current position">Explain position</button>
+                            <button class="prompt-button" data-prompt="What should I consider before my next move?">Next move advice</button>
+                            <button class="prompt-button" data-prompt="Teach me a chess concept">Teach me</button>
+                        </div>
+
+                        <form class="chat-input-area" id="chatForm">
+                            <input type="text" id="chatInput" placeholder="Ask your chess assistant..." autocomplete="off">
+                            <button type="submit" class="send-button" aria-label="Send message">➤</button>
+                        </form>
+
+                        <p class="coach-disclaimer">
+                            AI coaching features will be expanded with real chess engine integration.
+                        </p>
+
+                    </div>
+
+
+                    <div class="content-card move-history-card">
+
+                        <div class="section-heading">
+                            <div>
+                                <h3>Move History</h3>
+                                <p>Track every move.</p>
+                            </div>
+                            <span id="moveCount">0 Moves</span>
+                        </div>
+
+                        <div class="move-table-wrapper">
+                            <table class="move-table">
+                                <thead>
+                                    <tr><th>#</th><th>White</th><th>Black</th></tr>
+                                </thead>
+                                <tbody id="moveTableBody">
+                                    <tr class="empty-moves">
+                                        <td colspan="3">Moves will appear here.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="history-actions">
+                            <button class="secondary-button" id="exportPGN">↓ Export PGN</button>
+                            <button class="secondary-button" id="clearHistory">Clear History</button>
+                        </div>
+
+                    </div>
+
+
+                    <div class="content-card game-info-card">
+                        <h3>Game Information</h3>
+                        <div class="game-info-row">
+                            <span>Current Turn</span>
+                            <strong id="gameTurn">White</strong>
+                        </div>
+                        <div class="game-info-row">
+                            <span>Total Moves</span>
+                            <strong id="moveStat">0</strong>
+                        </div>
+                        <div class="game-info-row">
+                            <span>Game Status</span>
+                            <strong id="gameStatus">In Progress</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             PAGE 3 : LEARN CHESS
+        ================================== -->
+
+        <section class="page" id="page-learn">
+
+            <div class="page-intro">
+                <span class="eyebrow">CHESS KNOWLEDGE CENTER</span>
+                <h2>Learn Chess. Build Your Intelligence.</h2>
+                <p>Start from the basics and gradually develop advanced chess understanding.</p>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span class="stat-label">LEARNING LEVEL</span>
+                    <h2>Beginner</h2>
+                    <p>Your current learning stage</p>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">LESSONS COMPLETED</span>
+                    <h2 id="lessonsCompleted">0</h2>
+                    <p>Lessons completed</p>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">TOTAL LESSONS</span>
+                    <h2>50+</h2>
+                    <p>Learning library</p>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">LEARNING PROGRESS</span>
+                    <h2 id="learningProgress">0%</h2>
+                    <p>Your learning journey</p>
+                </div>
+
+            </div>
+
+            <div class="content-card">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Your Chess Learning Path</h2>
+                        <p>Follow these stages to develop complete chess skills.</p>
+                    </div>
+                </div>
+
+                <div class="learning-path">
+
+                    <div class="learning-stage">
+                        <div class="stage-number">01</div>
+                        <div>
+                            <h3>Chess Fundamentals</h3>
+                            <p>Board, pieces, movement and basic rules.</p>
+                            <span class="stage-level">BEGINNER</span>
+                        </div>
+                        <button class="secondary-button" data-goto="rules">Start →</button>
+                    </div>
+
+                    <div class="learning-stage">
+                        <div class="stage-number">02</div>
+                        <div>
+                            <h3>Opening Principles</h3>
+                            <p>Learn development, control and opening ideas.</p>
+                            <span class="stage-level">BEGINNER</span>
+                        </div>
+                        <button class="secondary-button" data-goto="openings">Explore →</button>
+                    </div>
+
+                    <div class="learning-stage">
+                        <div class="stage-number">03</div>
+                        <div>
+                            <h3>Tactics & Combinations</h3>
+                            <p>Learn forks, pins, skewers and discovered attacks.</p>
+                            <span class="stage-level">INTERMEDIATE</span>
+                        </div>
+                        <button class="secondary-button" data-goto="puzzles">Practice →</button>
+                    </div>
+
+                    <div class="learning-stage">
+                        <div class="stage-number">04</div>
+                        <div>
+                            <h3>Strategy & Position</h3>
+                            <p>Understand planning, pawn structure and positional play.</p>
+                            <span class="stage-level">INTERMEDIATE</span>
+                        </div>
+                        <button class="secondary-button" data-goto="learn">Explore →</button>
+                    </div>
+
+                    <div class="learning-stage">
+                        <div class="stage-number">05</div>
+                        <div>
+                            <h3>Endgame Mastery</h3>
+                            <p>Learn king activity, pawn endings and checkmate techniques.</p>
+                            <span class="stage-level">ADVANCED</span>
+                        </div>
+                        <button class="secondary-button" data-goto="learn">Explore →</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-heading">
+                <div>
+                    <h2>Know Your Chess Pieces</h2>
+                    <p>Understand how each piece moves and captures.</p>
+                </div>
+            </div>
+
+            <div class="piece-grid">
+
+                <article class="piece-card">
+                    <div class="piece-symbol">♔</div>
+                    <h3>King</h3>
+                    <span class="piece-value">Value: Priceless</span>
+                    <p>Moves one square in any direction. The king must never move into check.</p>
+                    <span class="piece-movement">Movement: 1 square</span>
+                </article>
+
+                <article class="piece-card">
+                    <div class="piece-symbol">♕</div>
+                    <h3>Queen</h3>
+                    <span class="piece-value">Value: 9 points</span>
+                    <p>Moves horizontally, vertically and diagonally any number of squares.</p>
+                    <span class="piece-movement">Movement: Unlimited</span>
+                </article>
+
+                <article class="piece-card">
+                    <div class="piece-symbol">♖</div>
+                    <h3>Rook</h3>
+                    <span class="piece-value">Value: 5 points</span>
+                    <p>Moves horizontally and vertically any number of unobstructed squares.</p>
+                    <span class="piece-movement">Movement: Straight lines</span>
+                </article>
+
+                <article class="piece-card">
+                    <div class="piece-symbol">♗</div>
+                    <h3>Bishop</h3>
+                    <span class="piece-value">Value: 3 points</span>
+                    <p>Moves diagonally any number of unobstructed squares.</p>
+                    <span class="piece-movement">Movement: Diagonal</span>
+                </article>
+
+                <article class="piece-card">
+                    <div class="piece-symbol">♘</div>
+                    <h3>Knight</h3>
+                    <span class="piece-value">Value: 3 points</span>
+                    <p>Moves in an L-shape: two squares in one direction and one perpendicular.</p>
+                    <span class="piece-movement">Movement: L-shape</span>
+                </article>
+
+                <article class="piece-card">
+                    <div class="piece-symbol">♙</div>
+                    <h3>Pawn</h3>
+                    <span class="piece-value">Value: 1 point</span>
+                    <p>Moves forward one square, may move two squares from its starting position, and captures diagonally.</p>
+                    <span class="piece-movement">Movement: Forward</span>
+                </article>
+
+            </div>
+
+
+            <div class="section-heading">
+                <div>
+                    <h2>Explore Chess Topics</h2>
+                    <p>Choose a subject and develop your understanding.</p>
+                </div>
+            </div>
+
+            <div class="learning-topic-grid">
+
+                <button class="topic-card" data-goto="rules">
+                    <span class="topic-icon">♜</span>
+                    <h3>Chess Rules</h3>
+                    <p>Complete official rules and special situations.</p>
+                    <span>Explore Rules →</span>
+                </button>
+
+                <button class="topic-card" data-goto="openings">
+                    <span class="topic-icon">♞</span>
+                    <h3>Chess Openings</h3>
+                    <p>Opening principles, variations and preparation.</p>
+                    <span>Explore Openings →</span>
+                </button>
+
+                <button class="topic-card" data-goto="mistakes">
+                    <span class="topic-icon">⚠</span>
+                    <h3>Common Mistakes</h3>
+                    <p>Understand mistakes and how to avoid them.</p>
+                    <span>Learn More →</span>
+                </button>
+
+                <button class="topic-card" data-goto="smartmoves">
+                    <span class="topic-icon">✦</span>
+                    <h3>Smart Moves</h3>
+                    <p>Learn tactical ideas and strong decisions.</p>
+                    <span>Explore →</span>
+                </button>
+
+                <button class="topic-card" data-goto="puzzles">
+                    <span class="topic-icon">◇</span>
+                    <h3>Tactics Training</h3>
+                    <p>Improve calculation and pattern recognition.</p>
+                    <span>Practice →</span>
+                </button>
+
+                <button class="topic-card" data-goto="analysis">
+                    <span class="topic-icon">⌕</span>
+                    <h3>Game Analysis</h3>
+                    <p>Understand your games and improve your play.</p>
+                    <span>Analyze →</span>
+                </button>
+
+            </div>
+
+            <div class="content-card learning-tip">
+                <span class="eyebrow">ARIONZ LEARNING PRINCIPLE</span>
+                <h2>Don't Just Memorize Moves. Understand Them.</h2>
+                <p>Every chess move should have a purpose. Learn to understand threats, evaluate positions, protect your pieces and create meaningful plans.</p>
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             PAGE 4 : COMPLETE CHESS RULES
+        ================================== -->
+
+        <section class="page" id="page-rules">
+
+            <div class="page-intro">
+                <span class="eyebrow">OFFICIAL CHESS KNOWLEDGE</span>
+                <h2>Complete Chess Rules Library</h2>
+                <p>Everything a chess player should know, from the first move to the final result.</p>
+            </div>
+
+            <div class="content-card rules-search-card">
+                <div class="section-heading">
+                    <div>
+                        <h2>Find a Chess Rule</h2>
+                        <p>Search the rules library by keyword.</p>
+                    </div>
+                </div>
+                <input type="search" id="rulesSearch" class="search-input"
+                       placeholder="Search: castling, checkmate, en passant...">
+            </div>
+
+
+            <div class="section-heading">
+                <div>
+                    <h2>01. Basic Chess Rules</h2>
+                    <p>The foundation of every chess game.</p>
+                </div>
+            </div>
+
+            <div class="rules-grid">
+
+                <article class="rule-card" data-rule="board">
+                    <span class="rule-number">RULE 01</span>
+                    <h3>The Chessboard</h3>
+                    <p>A chessboard has 64 squares arranged in 8 rows and 8 columns. Each player begins with 16 pieces.</p>
+                </article>
+
+                <article class="rule-card" data-rule="setup">
+                    <span class="rule-number">RULE 02</span>
+                    <h3>Initial Setup</h3>
+                    <p>The board is positioned with a light square on each player's right-hand corner. The queen starts on her own colour.</p>
+                </article>
+
+                <article class="rule-card" data-rule="turn">
+                    <span class="rule-number">RULE 03</span>
+                    <h3>Taking Turns</h3>
+                    <p>White makes the first move. Players alternate turns, moving one piece per turn unless a special rule applies.</p>
+                </article>
+
+                <article class="rule-card" data-rule="capture">
+                    <span class="rule-number">RULE 04</span>
+                    <h3>Capturing Pieces</h3>
+                    <p>A piece captures an opponent's piece by moving to its square, following that piece's legal movement rules.</p>
+                </article>
+
+                <article class="rule-card" data-rule="check">
+                    <span class="rule-number">RULE 05</span>
+                    <h3>Check</h3>
+                    <p>A king is in check when it is attacked by an opponent's piece. The player must respond to the check immediately.</p>
+                </article>
+
+                <article class="rule-card" data-rule="checkmate">
+                    <span class="rule-number">RULE 06</span>
+                    <h3>Checkmate</h3>
+                    <p>Checkmate occurs when the king is in check and no legal move can remove the threat. The game ends immediately.</p>
+                </article>
+
+                <article class="rule-card" data-rule="stalemate">
+                    <span class="rule-number">RULE 07</span>
+                    <h3>Stalemate</h3>
+                    <p>Stalemate occurs when a player has no legal move but their king is not in check. The game is drawn.</p>
+                </article>
+
+                <article class="rule-card" data-rule="illegal">
+                    <span class="rule-number">RULE 08</span>
+                    <h3>Illegal Moves</h3>
+                    <p>A move is illegal if it violates a piece's movement rules or leaves the player's own king in check.</p>
+                </article>
+
+            </div>
+
+
+            <div class="section-heading">
+                <div>
+                    <h2>02. Special Chess Rules</h2>
+                    <p>Important rules that every player should understand.</p>
+                </div>
+            </div>
+
+            <div class="rules-grid">
+
+                <article class="rule-card special-rule" data-rule="castling">
+                    <span class="rule-number">SPECIAL RULE 01</span>
+                    <div class="rule-symbol">♔ ♖</div>
+                    <h3>Castling</h3>
+                    <p>Castling is a special move involving the king and a rook. The king moves two squares toward the rook, and the rook moves to the square next to the king.</p>
+                    <div class="rule-note">Neither piece may have moved before; squares between them must be empty; the king cannot be in check, cross an attacked square or land on one.</div>
+                </article>
+
+                <article class="rule-card special-rule" data-rule="enpassant">
+                    <span class="rule-number">SPECIAL RULE 02</span>
+                    <div class="rule-symbol">♙</div>
+                    <h3>En Passant</h3>
+                    <p>If an opponent's pawn advances two squares from its starting position and lands beside your pawn, your pawn may capture it as though it moved only one square.</p>
+                    <div class="rule-note">This capture must be made immediately on the next move. Otherwise the opportunity is lost.</div>
+                </article>
+
+                <article class="rule-card special-rule" data-rule="promotion">
+                    <span class="rule-number">SPECIAL RULE 03</span>
+                    <div class="rule-symbol">♙ → ♕</div>
+                    <h3>Pawn Promotion</h3>
+                    <p>When a pawn reaches the last rank, it must be promoted to a queen, rook, bishop or knight of the same colour.</p>
+                    <div class="rule-note">A player can have multiple queens. Promotion is not limited to pieces that have already been captured.</div>
+                </article>
+
+                <article class="rule-card special-rule" data-rule="doublepawn">
+                    <span class="rule-number">SPECIAL RULE 04</span>
+                    <div class="rule-symbol">♙ ↟</div>
+                    <h3>Pawn's First Move</h3>
+                    <p>A pawn may move one or two squares forward on its first move, provided both squares are clear.</p>
+                    <div class="rule-note">After its first move, it can normally move only one square forward.</div>
+                </article>
+
+            </div>
+
+
+            <div class="section-heading">
+                <div>
+                    <h2>03. Draw Rules</h2>
+                    <p>Understand when a chess game ends without a winner.</p>
+                </div>
+            </div>
+
+            <div class="rules-grid">
+
+                <article class="rule-card" data-rule="agreement">
+                    <span class="rule-number">DRAW RULE 01</span>
+                    <h3>Draw by Agreement</h3>
+                    <p>Players may agree to a draw according to the rules and timing of the competition.</p>
+                </article>
+
+                <article class="rule-card" data-rule="repetition">
+                    <span class="rule-number">DRAW RULE 02</span>
+                    <h3>Threefold Repetition</h3>
+                    <p>A player may claim a draw when the same position occurs for the third time, with the same player to move and the same possible moves.</p>
+                </article>
+
+                <article class="rule-card" data-rule="fiftymove">
+                    <span class="rule-number">DRAW RULE 03</span>
+                    <h3>Fifty-Move Rule</h3>
+                    <p>A player may claim a draw if the last 50 moves by each player have been made without a pawn move or capture.</p>
+                </article>
+
+                <article class="rule-card" data-rule="insufficient">
+                    <span class="rule-number">DRAW RULE 04</span>
+                    <h3>Insufficient Material</h3>
+                    <p>A game is drawn when no possible sequence of legal moves can lead to checkmate.</p>
+                </article>
+
+            </div>
+
+
+            <div class="section-heading">
+                <div>
+                    <h2>04. Tournament & Competition Rules</h2>
+                    <p>Important concepts for competitive chess.</p>
+                </div>
+            </div>
+
+            <div class="rules-grid">
+
+                <article class="rule-card">
+                    <span class="rule-number">COMPETITION 01</span>
+                    <h3>Touch-Move Rule</h3>
+                    <p>In over-the-board play, deliberately touching your own piece can require you to move it if a legal move is available. Touching an opponent's piece can also create an obligation to capture. Exceptions apply.</p>
+                </article>
+
+                <article class="rule-card">
+                    <span class="rule-number">COMPETITION 02</span>
+                    <h3>Chess Clock</h3>
+                    <p>Players use a chess clock to manage their thinking time. After making a move, a player presses their clock to start the opponent's time.</p>
+                </article>
+
+                <article class="rule-card">
+                    <span class="rule-number">COMPETITION 03</span>
+                    <h3>Flag Fall</h3>
+                    <p>A player who runs out of time may lose the game, unless the opponent cannot possibly checkmate by any legal sequence.</p>
+                </article>
+
+                <article class="rule-card">
+                    <span class="rule-number">COMPETITION 04</span>
+                    <h3>Fair Play</h3>
+                    <p>Players must follow competition rules and must not receive unauthorized assistance during their games.</p>
+                </article>
+
+            </div>
+
+
+            <div class="content-card rules-quiz-card">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">TEST YOUR KNOWLEDGE</span>
+                        <h2>Chess Rules Quiz</h2>
+                        <p>Check how well you understand chess rules.</p>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <span class="quiz-counter">QUESTION 01</span>
+                    <h3>Which piece can jump over other pieces?</h3>
+
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-answer="wrong">Rook</button>
+                        <button class="quiz-option" data-answer="correct">Knight</button>
+                        <button class="quiz-option" data-answer="wrong">Bishop</button>
+                        <button class="quiz-option" data-answer="wrong">Queen</button>
+                    </div>
+
+                    <p class="quiz-feedback" id="rulesQuizFeedback">Select an answer to check your knowledge.</p>
+                </div>
+
+            </div>
+
+            <div class="content-card rules-reference">
+                <h3>Official Chess Rule Reference</h3>
+                <p>This learning library provides simplified explanations of common chess rules. Official competition rules can include additional details and exceptions.</p>
+                <p>For formal tournament play, consult the current FIDE Laws of Chess.</p>
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             PAGE 5 : OPENING EXPLORER
+        ================================== -->
+
+        <section class="page" id="page-openings">
+
+            <div class="page-intro">
+                <span class="eyebrow">OPENING KNOWLEDGE CENTER</span>
+                <h2>Master the First Moves.</h2>
+                <p>Explore chess openings, understand their ideas, learn variations and prepare your opening strategy.</p>
+            </div>
+
+            <div class="opening-hero">
+                <div class="opening-hero-content">
+                    <span class="eyebrow">THE BEGINNING OF EVERY GAME</span>
+                    <h2>A Strong Opening Builds a Strong Game.</h2>
+                    <p>The opening is the first phase of a chess game. Your goal is to develop pieces, control the centre, protect your king and prepare a meaningful plan.</p>
+                    <button class="primary-button" data-goto="play">Practice in Chess Arena →</button>
+                </div>
+                <div class="opening-hero-symbol">♞</div>
+            </div>
+
+
+            <div class="section-heading">
+                <div>
+                    <h2>01. Essential Opening Principles</h2>
+                    <p>Understand these ideas before memorizing opening moves.</p>
+                </div>
+            </div>
+
+            <div class="opening-principles-grid">
+
+                <article class="opening-principle-card">
+                    <div class="principle-number">01</div>
+                    <h3>Control the Centre</h3>
+                    <p>Fight for central squares, especially e4, d4, e5 and d5. Central control helps your pieces become more active.</p>
+                </article>
+
+                <article class="opening-principle-card">
+                    <div class="principle-number">02</div>
+                    <h3>Develop Your Pieces</h3>
+                    <p>Bring your knights and bishops into active positions. Avoid unnecessary moves with the same piece.</p>
+                </article>
+
+                <article class="opening-principle-card">
+                    <div class="principle-number">03</div>
+                    <h3>Protect Your King</h3>
+                    <p>Castling often helps your king reach safety and connects your rooks.</p>
+                </article>
+
+                <article class="opening-principle-card">
+                    <div class="principle-number">04</div>
+                    <h3>Connect Your Rooks</h3>
+                    <p>Develop your pieces and clear the back rank so your rooks can support one another.</p>
+                </article>
+
+                <article class="opening-principle-card">
+                    <div class="principle-number">05</div>
+                    <h3>Avoid Early Queen Adventures</h3>
+                    <p>Moving the queen too early can expose it to attacks and cost valuable development time.</p>
+                </article>
+
+                <article class="opening-principle-card">
+                    <div class="principle-number">06</div>
+                    <h3>Understand Your Plan</h3>
+                    <p>Do not memorize moves blindly. Understand what each move tries to achieve.</p>
+                </article>
+
+            </div>
+
+
+            <div class="section-heading">
+                <div>
+                    <h2>02. Opening Categories</h2>
+                    <p>Explore different opening styles and approaches.</p>
+                </div>
+            </div>
+
+            <div class="opening-category-grid">
+
+                <div class="category-card">
+                    <span class="category-icon">♙</span>
+                    <h3>Open Games</h3>
+                    <p>Usually begin with 1.e4 e5. These often create open lines and active piece play.</p>
+                </div>
+
+                <div class="category-card">
+                    <span class="category-icon">♘</span>
+                    <h3>Semi-Open Games</h3>
+                    <p>White starts with 1.e4 and Black replies with a different move than 1...e5.</p>
+                </div>
+
+                <div class="category-card">
+                    <span class="category-icon">♗</span>
+                    <h3>Closed Games</h3>
+                    <p>Often start with 1.d4 d5 and may involve strategic pawn structures.</p>
+                </div>
+
+                <div class="category-card">
+                    <span class="category-icon">♖</span>
+                    <h3>Indian Defences</h3>
+                    <p>Black often develops with ...Nf6 and fianchetto or flexible central plans.</p>
+                </div>
+
+                <div class="category-card">
+                    <span class="category-icon">♕</span>
+                    <h3>Flank Openings</h3>
+                    <p>Begin with moves such as 1.c4, 1.Nf3 or 1.f4.</p>
+                </div>
+
+                <div class="category-card">
+                    <span class="category-icon">✦</span>
+                    <h3>Gambit Openings</h3>
+                    <p>Offer material, often a pawn, in exchange for development, initiative or attacking chances.</p>
+                </div>
+
+            </div>
+
+
+            <div class="section-heading">
+                <div>
+                    <h2>03. Famous Chess Openings</h2>
+                    <p>Explore popular opening systems for both colours.</p>
+                </div>
+            </div>
+
+            <div class="opening-filter-bar">
+                <button class="filter-button active" data-opening-filter="all">All Openings</button>
+                <button class="filter-button" data-opening-filter="white">White Openings</button>
+                <button class="filter-button" data-opening-filter="black">Black Defences</button>
+                <button class="filter-button" data-opening-filter="beginner">Beginner Friendly</button>
+            </div>
+
+
+            <div class="opening-grid">
+
+                <article class="opening-card" data-opening-color="white" data-opening-level="beginner">
+                    <div class="opening-card-top">
+                        <span class="opening-type">WHITE OPENING</span>
+                        <span class="opening-level">BEGINNER</span>
+                    </div>
+                    <div class="opening-symbol">♙</div>
+                    <h3>Italian Game</h3>
+                    <p class="opening-notation">1. e4 e5 2. Nf3 Nc6 3. Bc4</p>
+                    <p>Develops pieces actively and targets the sensitive f7 square. A useful opening for learning development and centre control.</p>
+                    <div class="opening-meta">
+                        <span>Style: Open Game</span>
+                        <span>Difficulty: Beginner</span>
+                    </div>
+                    <button class="secondary-button opening-detail-button" data-opening="italian">Explore Opening →</button>
+                </article>
+
+                <article class="opening-card" data-opening-color="white" data-opening-level="beginner">
+                    <div class="opening-card-top">
+                        <span class="opening-type">WHITE OPENING</span>
+                        <span class="opening-level">BEGINNER</span>
+                    </div>
+                    <div class="opening-symbol">♘</div>
+                    <h3>Ruy Lopez</h3>
+                    <p class="opening-notation">1. e4 e5 2. Nf3 Nc6 3. Bb5</p>
+                    <p>A classical opening that develops the bishop and puts pressure on Black's central knight.</p>
+                    <div class="opening-meta">
+                        <span>Style: Open Game</span>
+                        <span>Difficulty: Intermediate</span>
+                    </div>
+                    <button class="secondary-button opening-detail-button" data-opening="ruy">Explore Opening →</button>
+                </article>
+
+                <article class="opening-card" data-opening-color="white" data-opening-level="beginner">
+                    <div class="opening-card-top">
+                        <span class="opening-type">WHITE OPENING</span>
+                        <span class="opening-level">BEGINNER</span>
+                    </div>
+                    <div class="opening-symbol">♗</div>
+                    <h3>Queen's Gambit</h3>
+                    <p class="opening-notation">1. d4 d5 2. c4</p>
+                    <p>White challenges Black's central pawn and seeks central control and positional play.</p>
+                    <div class="opening-meta">
+                        <span>Style: Closed Game</span>
+                        <span>Difficulty: Intermediate</span>
+                    </div>
+                    <button class="secondary-button opening-detail-button" data-opening="queens">Explore Opening →</button>
+                </article>
+
+                <article class="opening-card" data-opening-color="black" data-opening-level="beginner">
+                    <div class="opening-card-top">
+                        <span class="opening-type">BLACK DEFENCE</span>
+                        <span class="opening-level">BEGINNER</span>
+                    </div>
+                    <div class="opening-symbol">♟</div>
+                    <h3>Sicilian Defence</h3>
+                    <p class="opening-notation">1. e4 c5</p>
+                    <p>An ambitious response to 1.e4 that creates asymmetrical pawn structures and active counterplay opportunities.</p>
+                    <div class="opening-meta">
+                        <span>Style: Semi-Open</span>
+                        <span>Difficulty: Advanced</span>
+                    </div>
+                    <button class="secondary-button opening-detail-button" data-opening="sicilian">Explore Opening →</button>
+                </article>
+
+                <article class="opening-card" data-opening-color="black" data-opening-level="beginner">
+                    <div class="opening-card-top">
+                        <span class="opening-type">BLACK DEFENCE</span>
+                        <span class="opening-level">BEGINNER</span>
+                    </div>
+                    <div class="opening-symbol">♞</div>
+                    <h3>French Defence</h3>
+                    <p class="opening-notation">1. e4 e6</p>
+                    <p>Black prepares ...d5 and challenges White's central pawn structure.</p>
+                    <div class="opening-meta">
+                        <span>Style: Semi-Open</span>
+                        <span>Difficulty: Intermediate</span>
+                    </div>
+                    <button class="secondary-button opening-detail-button" data-opening="french">Explore Opening →</button>
+                </article>
+
+                <article class="opening-card" data-opening-color="black" data-opening-level="beginner">
+                    <div class="opening-card-top">
+                        <span class="opening-type">BLACK DEFENCE</span>
+                        <span class="opening-level">BEGINNER</span>
+                    </div>
+                    <div class="opening-symbol">♜</div>
+                    <h3>Caro-Kann Defence</h3>
+                    <p class="opening-notation">1. e4 c6 2. d4 d5</p>
+                    <p>A solid defence that supports a central ...d5 advance and aims for a sound position.</p>
+                    <div class="opening-meta">
+                        <span>Style: Semi-Open</span>
+                        <span>Difficulty: Beginner</span>
+                    </div>
+                    <button class="secondary-button opening-detail-button" data-opening="carokann">Explore Opening →</button>
+                </article>
+
+                <article class="opening-card" data-opening-color="black" data-opening-level="beginner">
+                    <div class="opening-card-top">
+                        <span class="opening-type">BLACK DEFENCE</span>
+                        <span class="opening-level">INTERMEDIATE</span>
+                    </div>
+                    <div class="opening-symbol">♛</div>
+                    <h3>King's Indian Defence</h3>
+                    <p class="opening-notation">1. d4 Nf6 2. c4 g6</p>
+                    <p>Black develops flexibly and often prepares a kingside counterattack.</p>
+                    <div class="opening-meta">
+                        <span>Style: Indian Defence</span>
+                        <span>Difficulty: Advanced</span>
+                    </div>
+                    <button class="secondary-button opening-detail-button" data-opening="kingsindian">Explore Opening →</button>
+                </article>
+
+                <article class="opening-card" data-opening-color="white" data-opening-level="beginner">
+                    <div class="opening-card-top">
+                        <span class="opening-type">WHITE OPENING</span>
+                        <span class="opening-level">BEGINNER</span>
+                    </div>
+                    <div class="opening-symbol">♖</div>
+                    <h3>London System</h3>
+                    <p class="opening-notation">1. d4 d5 2. Bf4</p>
+                    <p>A flexible system with a familiar development setup and strategic plans.</p>
+                    <div class="opening-meta">
+                        <span>Style: System Opening</span>
+                        <span>Difficulty: Beginner</span>
+                    </div>
+                    <button class="secondary-button opening-detail-button" data-opening="london">Explore Opening →</button>
+                </article>
+
+            </div>
+
+
+            <div class="content-card opening-detail-panel" id="openingDetailPanel">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">OPENING STUDY</span>
+                        <h2 id="openingDetailTitle">Opening Details</h2>
+                        <p id="openingDetailSubtitle">Select an opening above to explore it.</p>
+                    </div>
+                </div>
+
+                <div class="opening-detail-content">
+
+                    <div class="opening-detail-info">
+                        <h3>Opening Overview</h3>
+                        <p id="openingDetailDescription">Opening information will appear here.</p>
+
+                        <h3>Key Ideas</h3>
+                        <ul id="openingKeyIdeas">
+                            <li>Select an opening to see its key ideas.</li>
+                        </ul>
+
+                        <h3>Common Mistakes</h3>
+                        <ul id="openingCommonMistakes">
+                            <li>Study typical mistakes in the selected opening.</li>
+                        </ul>
+                    </div>
+
+                    <div class="opening-detail-board">
+                        <div class="opening-board-placeholder">
+                            <span>♞</span>
+                            <p>Opening board preview</p>
+                            <small>Interactive move exploration will be added later.</small>
+                        </div>
+
+                        <div class="opening-notation-box">
+                            <span>MAIN LINE</span>
+                            <p id="openingMainLine">Select an opening</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="section-heading">
+                <div>
+                    <h2>04. Personal Opening Preparation</h2>
+                    <p>Build an opening repertoire that suits your playing style.</p>
+                </div>
+            </div>
+
+            <div class="content-card opening-preparation">
+
+                <div class="preparation-item">
+                    <span class="preparation-icon">♔</span>
+                    <div>
+                        <h3>White Repertoire</h3>
+                        <p>Choose an opening system to use as White.</p>
+                    </div>
+                    <span class="preparation-status">COMING SOON</span>
+                </div>
+
+                <div class="preparation-item">
+                    <span class="preparation-icon">♚</span>
+                    <div>
+                        <h3>Black vs 1.e4</h3>
+                        <p>Prepare a response to White's king pawn opening.</p>
+                    </div>
+                    <span class="preparation-status">COMING SOON</span>
+                </div>
+
+                <div class="preparation-item">
+                    <span class="preparation-icon">♜</span>
+                    <div>
+                        <h3>Black vs 1.d4</h3>
+                        <p>Prepare a response to White's queen pawn opening.</p>
+                    </div>
+                    <span class="preparation-status">COMING SOON</span>
+                </div>
+
+            </div>
+
+            <div class="content-card learning-tip">
+                <span class="eyebrow">ARIONZ OPENING PRINCIPLE</span>
+                <h2>Understand the Position, Not Just the Moves.</h2>
+                <p>Memorizing an opening line is useful, but understanding the plans, pawn structures, piece activity and tactical ideas behind it is what helps you adapt when your opponent plays an unexpected move.</p>
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             PAGE 6 : MISTAKES & SOLUTIONS
+        ================================== -->
+
+        <section class="page" id="page-mistakes">
+
+            <div class="page-intro">
+                <span class="eyebrow">CHESS IMPROVEMENT CENTER</span>
+                <h2>Understand Your Mistakes.</h2>
+                <p>Learn why mistakes happen, how to recognize them and how to avoid repeating them.</p>
+            </div>
+
+
+            <!-- MISTAKE INTRO -->
+
+            <div class="mistake-hero">
+                <div>
+                    <span class="eyebrow">LEARN FROM EVERY MOVE</span>
+                    <h2>Every Mistake Is an Opportunity to Improve.</h2>
+                    <p>
+                        Strong players are not people who never make mistakes.
+                        They learn to recognize patterns, check threats
+                        and make better decisions over time.
+                    </p>
+                    <button class="primary-button" data-goto="analysis">
+                        Review a Game →
+                    </button>
+                </div>
+                <div class="mistake-hero-icon">⚠</div>
+            </div>
+
+
+            <!-- MISTAKE TYPES -->
+
+            <div class="section-heading">
+                <div>
+                    <h2>01. Types of Chess Mistakes</h2>
+                    <p>Understand the different levels of move quality.</p>
+                </div>
+            </div>
+
+            <div class="mistake-type-grid">
+
+                <article class="mistake-type-card">
+                    <span class="mistake-label">LOW SEVERITY</span>
+                    <div class="mistake-symbol">~</div>
+                    <h3>Inaccuracy</h3>
+                    <p>A move that is playable but less effective than a stronger alternative.</p>
+                    <span class="mistake-example">Example: Choosing a passive square for a piece.</span>
+                </article>
+
+                <article class="mistake-type-card">
+                    <span class="mistake-label">MEDIUM SEVERITY</span>
+                    <div class="mistake-symbol">!</div>
+                    <h3>Mistake</h3>
+                    <p>A move that significantly worsens the position or misses an important opportunity.</p>
+                    <span class="mistake-example">Example: Allowing a tactical threat.</span>
+                </article>
+
+                <article class="mistake-type-card">
+                    <span class="mistake-label">HIGH SEVERITY</span>
+                    <div class="mistake-symbol">??</div>
+                    <h3>Blunder</h3>
+                    <p>A serious error that can lose material, allow checkmate or badly damage the position.</p>
+                    <span class="mistake-example">Example: Leaving a queen undefended.</span>
+                </article>
+
+                <article class="mistake-type-card">
+                    <span class="mistake-label">MISSED OPPORTUNITY</span>
+                    <div class="mistake-symbol">?!</div>
+                    <h3>Missed Chance</h3>
+                    <p>Failing to notice a strong move or tactical opportunity.</p>
+                    <span class="mistake-example">Example: Missing a winning fork.</span>
+                </article>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+
+            <div class="section-heading">
+                <div>
+                    <h2>02. Common Mistakes Every Player Should Avoid</h2>
+                    <p>Recognize these patterns before they damage your position.</p>
+                </div>
+            </div>
+
+            <div class="mistake-list">
+
+                <article class="mistake-card">
+                    <div class="mistake-index">01</div>
+                    <div class="mistake-content">
+                        <h3>Leaving Pieces Undefended</h3>
+                        <p>Moving a piece without checking whether an opponent can capture it.</p>
+                        <div class="mistake-solution">
+                            <strong>Better approach:</strong>
+                            Before moving, check which pieces are attacked and which pieces are protected.
+                        </div>
+                    </div>
+                </article>
+
+                <article class="mistake-card">
+                    <div class="mistake-index">02</div>
+                    <div class="mistake-content">
+                        <h3>Ignoring Opponent Threats</h3>
+                        <p>Focusing only on your own plan while missing the opponent's immediate threats.</p>
+                        <div class="mistake-solution">
+                            <strong>Better approach:</strong>
+                            Ask: What is my opponent threatening after this move?
+                        </div>
+                    </div>
+                </article>
+
+                <article class="mistake-card">
+                    <div class="mistake-index">03</div>
+                    <div class="mistake-content">
+                        <h3>Moving the Same Piece Too Many Times</h3>
+                        <p>Repeatedly moving one piece during the opening while other pieces remain undeveloped.</p>
+                        <div class="mistake-solution">
+                            <strong>Better approach:</strong>
+                            Develop your minor pieces and work toward king safety.
+                        </div>
+                    </div>
+                </article>
+
+                <article class="mistake-card">
+                    <div class="mistake-index">04</div>
+                    <div class="mistake-content">
+                        <h3>Delaying King Safety</h3>
+                        <p>Leaving the king in the centre when the position makes it vulnerable.</p>
+                        <div class="mistake-solution">
+                            <strong>Better approach:</strong>
+                            Consider castling when it is legal and strategically appropriate.
+                        </div>
+                    </div>
+                </article>
+
+                <article class="mistake-card">
+                    <div class="mistake-index">05</div>
+                    <div class="mistake-content">
+                        <h3>Making Unnecessary Pawn Moves</h3>
+                        <p>Creating weaknesses by moving too many pawns without a clear purpose.</p>
+                        <div class="mistake-solution">
+                            <strong>Better approach:</strong>
+                            Move pawns with a plan and consider the squares they leave behind.
+                        </div>
+                    </div>
+                </article>
+
+                <article class="mistake-card">
+                    <div class="mistake-index">06</div>
+                    <div class="mistake-content">
+                        <h3>Capturing Without Calculating</h3>
+                        <p>Taking a piece without checking whether the capture leads to a disadvantage.</p>
+                        <div class="mistake-solution">
+                            <strong>Better approach:</strong>
+                            Calculate the likely recapture and resulting position.
+                        </div>
+                    </div>
+                </article>
+
+                <article class="mistake-card">
+                    <div class="mistake-index">07</div>
+                    <div class="mistake-content">
+                        <h3>Ignoring Checks and Tactics</h3>
+                        <p>Missing forcing moves such as checks, captures and direct threats.</p>
+                        <div class="mistake-solution">
+                            <strong>Better approach:</strong>
+                            Look for forcing moves for both players before committing.
+                        </div>
+                    </div>
+                </article>
+
+                <article class="mistake-card">
+                    <div class="mistake-index">08</div>
+                    <div class="mistake-content">
+                        <h3>Playing Too Quickly</h3>
+                        <p>Making decisions before understanding the position and possible responses.</p>
+                        <div class="mistake-solution">
+                            <strong>Better approach:</strong>
+                            Use a consistent thinking routine and manage your clock.
+                        </div>
+                    </div>
+                </article>
+
+                <article class="mistake-card">
+                    <div class="mistake-index">09</div>
+                    <div class="mistake-content">
+                        <h3>Ignoring Piece Activity</h3>
+                        <p>Keeping pieces passive while the opponent develops active threats.</p>
+                        <div class="mistake-solution">
+                            <strong>Better approach:</strong>
+                            Improve your least active piece and seek useful squares.
+                        </div>
+                    </div>
+                </article>
+
+                <article class="mistake-card">
+                    <div class="mistake-index">10</div>
+                    <div class="mistake-content">
+                        <h3>Not Reviewing Games</h3>
+                        <p>Repeating the same errors because previous games were never studied.</p>
+                        <div class="mistake-solution">
+                            <strong>Better approach:</strong>
+                            Review important moments and record lessons from each game.
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+
+            <!-- THINKING CHECKLIST -->
+
+            <div class="content-card thinking-checklist">
+
+                <span class="eyebrow">BEFORE EVERY MOVE</span>
+                <h2>Your Five-Point Thinking Checklist</h2>
+                <p>Build a reliable thinking habit before making a move.</p>
+
+                <div class="checklist-items">
+                    <div class="checklist-item"><span>01</span><p>Is my king safe?</p></div>
+                    <div class="checklist-item"><span>02</span><p>What is my opponent threatening?</p></div>
+                    <div class="checklist-item"><span>03</span><p>Are any of my pieces undefended?</p></div>
+                    <div class="checklist-item"><span>04</span><p>What checks, captures and threats are available?</p></div>
+                    <div class="checklist-item"><span>05</span><p>What will happen after my opponent responds?</p></div>
+                </div>
+
+            </div>
+
+
+            <!-- AI MISTAKE REVIEW -->
+
+            <div class="content-card mistake-ai-card">
+
+                <span class="eyebrow">PERSONALIZED IMPROVEMENT</span>
+                <h2>ArionZ Mistake Analyzer</h2>
+
+                <p>
+                    The future AI engine will review your games,
+                    identify inaccuracies, mistakes and blunders,
+                    explain why they happened and suggest lessons.
+                </p>
+
+                <div class="mistake-ai-features">
+                    <span>✓ Mistake Detection</span>
+                    <span>✓ Better Move Comparison</span>
+                    <span>✓ Explanation of Errors</span>
+                    <span>✓ Personal Improvement Plan</span>
+                </div>
+
+                <button class="primary-button" data-goto="analysis">
+                    Open Game Analysis →
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             PAGE 7 : SMART MOVES
+        ================================== -->
+
+        <section class="page" id="page-smartmoves">
+
+            <div class="page-intro">
+                <span class="eyebrow">TACTICAL INTELLIGENCE CENTER</span>
+                <h2>Think Smart. Find Strong Moves.</h2>
+                <p>Learn tactical patterns, calculate combinations and recognize opportunities to gain an advantage.</p>
+            </div>
+
+
+            <!-- SMART MOVES HERO -->
+
+            <div class="smartmove-hero">
+
+                <div>
+                    <span class="eyebrow">PLAY WITH A PURPOSE</span>
+                    <h2>Don't Just Make a Move. Create a Problem for Your Opponent.</h2>
+                    <p>
+                        Smart chess is about recognizing threats,
+                        creating pressure, coordinating pieces and
+                        choosing moves that improve your position.
+                    </p>
+                    <button class="primary-button" data-goto="puzzles">
+                        Train Your Tactics →
+                    </button>
+                </div>
+
+                <div class="smartmove-hero-icon">✦</div>
+
+            </div>
+
+
+            <!-- TACTICAL PATTERNS -->
+
+            <div class="section-heading">
+                <div>
+                    <h2>01. Essential Tactical Patterns</h2>
+                    <p>Learn the patterns that help you win material and create threats.</p>
+                </div>
+            </div>
+
+
+            <div class="tactic-grid">
+
+                <article class="tactic-card">
+                    <div class="tactic-symbol">♘</div>
+                    <span class="tactic-type">TACTIC 01</span>
+                    <h3>Fork</h3>
+                    <p>
+                        One piece attacks two or more enemy pieces
+                        at the same time. The opponent may struggle
+                        to protect every target.
+                    </p>
+                    <div class="tactic-example">
+                        <strong>Typical idea:</strong>
+                        A knight attacks the king and queen simultaneously.
+                    </div>
+                </article>
+
+
+                <article class="tactic-card">
+                    <div class="tactic-symbol">♗</div>
+                    <span class="tactic-type">TACTIC 02</span>
+                    <h3>Pin</h3>
+                    <p>
+                        A piece is restricted because moving it
+                        would expose a more valuable piece behind it.
+                    </p>
+                    <div class="tactic-example">
+                        <strong>Typical idea:</strong>
+                        A bishop pins a knight to the king.
+                    </div>
+                </article>
+
+
+                <article class="tactic-card">
+                    <div class="tactic-symbol">♖</div>
+                    <span class="tactic-type">TACTIC 03</span>
+                    <h3>Skewer</h3>
+                    <p>
+                        A valuable piece is attacked first.
+                        When it moves away, a less valuable piece
+                        behind it may become exposed.
+                    </p>
+                    <div class="tactic-example">
+                        <strong>Typical idea:</strong>
+                        A rook attacks a king with a queen behind it.
+                    </div>
+                </article>
+
+
+                <article class="tactic-card">
+                    <div class="tactic-symbol">✦</div>
+                    <span class="tactic-type">TACTIC 04</span>
+                    <h3>Discovered Attack</h3>
+                    <p>
+                        Moving one piece reveals an attack from
+                        another piece that was previously blocked.
+                    </p>
+                    <div class="tactic-example">
+                        <strong>Typical idea:</strong>
+                        A knight moves away and reveals a rook attack.
+                    </div>
+                </article>
+
+
+                <article class="tactic-card">
+                    <div class="tactic-symbol">♕</div>
+                    <span class="tactic-type">TACTIC 05</span>
+                    <h3>Double Attack</h3>
+                    <p>
+                        A move creates two threats at once,
+                        forcing the opponent to make a difficult choice.
+                    </p>
+                    <div class="tactic-example">
+                        <strong>Typical idea:</strong>
+                        A move attacks a queen and threatens checkmate.
+                    </div>
+                </article>
+
+
+                <article class="tactic-card">
+                    <div class="tactic-symbol">♜</div>
+                    <span class="tactic-type">TACTIC 06</span>
+                    <h3>Back-Rank Mate</h3>
+                    <p>
+                        A rook or queen checkmates a king trapped
+                        behind its own pieces on the back rank.
+                    </p>
+                    <div class="tactic-example">
+                        <strong>Typical idea:</strong>
+                        A rook reaches the back rank while escape squares are blocked.
+                    </div>
+                </article>
+
+
+                <article class="tactic-card">
+                    <div class="tactic-symbol">♙</div>
+                    <span class="tactic-type">TACTIC 07</span>
+                    <h3>Pawn Promotion Threat</h3>
+                    <p>
+                        A passed pawn advances toward promotion,
+                        forcing the opponent to spend time stopping it.
+                    </p>
+                    <div class="tactic-example">
+                        <strong>Typical idea:</strong>
+                        A protected passed pawn creates a serious threat.
+                    </div>
+                </article>
+
+
+                <article class="tactic-card">
+                    <div class="tactic-symbol">♞</div>
+                    <span class="tactic-type">TACTIC 08</span>
+                    <h3>Deflection</h3>
+                    <p>
+                        A defending piece is distracted or forced
+                        away from an important square or duty.
+                    </p>
+                    <div class="tactic-example">
+                        <strong>Typical idea:</strong>
+                        A defender is lured away from protecting the king.
+                    </div>
+                </article>
+
+
+                <article class="tactic-card">
+                    <div class="tactic-symbol">♗</div>
+                    <span class="tactic-type">TACTIC 09</span>
+                    <h3>Decoy</h3>
+                    <p>
+                        An opponent's piece is tempted onto a square
+                        where it becomes vulnerable to a tactic.
+                    </p>
+                    <div class="tactic-example">
+                        <strong>Typical idea:</strong>
+                        A piece is drawn onto a dangerous square.
+                    </div>
+                </article>
+
+
+                <article class="tactic-card">
+                    <div class="tactic-symbol">♕</div>
+                    <span class="tactic-type">TACTIC 10</span>
+                    <h3>Removing the Defender</h3>
+                    <p>
+                        Eliminate or exchange an important defending
+                        piece to make another target vulnerable.
+                    </p>
+                    <div class="tactic-example">
+                        <strong>Typical idea:</strong>
+                        Capture the only defender of a valuable piece.
+                    </div>
+                </article>
+
+
+                <article class="tactic-card">
+                    <div class="tactic-symbol">♖</div>
+                    <span class="tactic-type">TACTIC 11</span>
+                    <h3>Overloading</h3>
+                    <p>
+                        A defending piece has too many responsibilities
+                        and cannot handle every threat.
+                    </p>
+                    <div class="tactic-example">
+                        <strong>Typical idea:</strong>
+                        One defender protects two important targets.
+                    </div>
+                </article>
+
+
+                <article class="tactic-card">
+                    <div class="tactic-symbol">✧</div>
+                    <span class="tactic-type">TACTIC 12</span>
+                    <h3>Interference</h3>
+                    <p>
+                        A move blocks communication between enemy
+                        pieces or interrupts an important defensive line.
+                    </p>
+                    <div class="tactic-example">
+                        <strong>Typical idea:</strong>
+                        A piece blocks a rook from defending another piece.
+                    </div>
+                </article>
+
+            </div>
+
+
+            <!-- CHECKMATE PATTERNS -->
+
+            <div class="section-heading">
+                <div>
+                    <h2>02. Famous Checkmate Patterns</h2>
+                    <p>Learn how coordinated pieces can create checkmate threats.</p>
+                </div>
+            </div>
+
+
+            <div class="checkmate-grid">
+
+                <article class="checkmate-card">
+                    <span class="checkmate-number">PATTERN 01</span>
+                    <div class="checkmate-icon">♕</div>
+                    <h3>Back-Rank Checkmate</h3>
+                    <p>A rook or queen delivers mate along the back rank when the king has no safe escape square.</p>
+                </article>
+
+                <article class="checkmate-card">
+                    <span class="checkmate-number">PATTERN 02</span>
+                    <div class="checkmate-icon">♘</div>
+                    <h3>Smothered Mate</h3>
+                    <p>A knight checkmates a king surrounded by its own pieces.</p>
+                </article>
+
+                <article class="checkmate-card">
+                    <span class="checkmate-number">PATTERN 03</span>
+                    <div class="checkmate-icon">♗</div>
+                    <h3>Arabian Mate</h3>
+                    <p>A rook and knight coordinate to trap the king near a corner.</p>
+                </article>
+
+                <article class="checkmate-card">
+                    <span class="checkmate-number">PATTERN 04</span>
+                    <div class="checkmate-icon">♕</div>
+                    <h3>Opera Mate</h3>
+                    <p>A famous mating pattern involving coordinated attacking pieces and restricted king movement.</p>
+                </article>
+
+                <article class="checkmate-card">
+                    <span class="checkmate-number">PATTERN 05</span>
+                    <div class="checkmate-icon">♖</div>
+                    <h3>Two-Rook Mate</h3>
+                    <p>Two rooks coordinate to restrict the king and deliver checkmate along a rank or file.</p>
+                </article>
+
+                <article class="checkmate-card">
+                    <span class="checkmate-number">PATTERN 06</span>
+                    <div class="checkmate-icon">♙</div>
+                    <h3>Queen and Pawn Mate</h3>
+                    <p>A queen and supporting pieces restrict the king's escape squares and create a mating net.</p>
+                </article>
+
+            </div>
+
+
+            <!-- SMART DECISION PROCESS -->
+
+            <div class="content-card smart-thinking-card">
+
+                <span class="eyebrow">SMART DECISION FRAMEWORK</span>
+                <h2>How to Find a Strong Move</h2>
+                <p>Use this thinking sequence to evaluate a position.</p>
+
+                <div class="smart-thinking-steps">
+
+                    <div class="thinking-step">
+                        <span>01</span>
+                        <div>
+                            <h3>Look for Checks</h3>
+                            <p>Find legal checks that may create forcing opportunities.</p>
+                        </div>
+                    </div>
+
+                    <div class="thinking-step">
+                        <span>02</span>
+                        <div>
+                            <h3>Look for Captures</h3>
+                            <p>Check whether a capture wins material or improves your position.</p>
+                        </div>
+                    </div>
+
+                    <div class="thinking-step">
+                        <span>03</span>
+                        <div>
+                            <h3>Look for Threats</h3>
+                            <p>Find moves that attack important pieces or create a future threat.</p>
+                        </div>
+                    </div>
+
+                    <div class="thinking-step">
+                        <span>04</span>
+                        <div>
+                            <h3>Calculate the Response</h3>
+                            <p>Consider your opponent's strongest reply before choosing a move.</p>
+                        </div>
+                    </div>
+
+                    <div class="thinking-step">
+                        <span>05</span>
+                        <div>
+                            <h3>Check King Safety</h3>
+                            <p>Make sure your move does not allow an immediate tactical problem.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SHORT-TERM WIN STRATEGY -->
+
+            <div class="content-card winning-plan-card">
+
+                <span class="eyebrow">SMART GAME PLAN</span>
+                <h2>How to Create Winning Opportunities</h2>
+
+                <p>
+                    There is no guaranteed shortcut to winning a chess game.
+                    However, you can create practical opportunities by
+                    following sound chess principles.
+                </p>
+
+                <div class="winning-plan-grid">
+
+                    <div class="winning-plan-item">
+                        <span>01</span>
+                        <h3>Develop Quickly</h3>
+                        <p>Bring your pieces into useful positions and avoid wasting opening moves.</p>
+                    </div>
+
+                    <div class="winning-plan-item">
+                        <span>02</span>
+                        <h3>Control Important Squares</h3>
+                        <p>Fight for the centre and restrict your opponent's active options.</p>
+                    </div>
+
+                    <div class="winning-plan-item">
+                        <span>03</span>
+                        <h3>Find Weaknesses</h3>
+                        <p>Identify undefended pieces, weak pawns and vulnerable squares.</p>
+                    </div>
+
+                    <div class="winning-plan-item">
+                        <span>04</span>
+                        <h3>Coordinate Your Pieces</h3>
+                        <p>Make your pieces support one another instead of attacking alone.</p>
+                    </div>
+
+                    <div class="winning-plan-item">
+                        <span>05</span>
+                        <h3>Calculate Before Attacking</h3>
+                        <p>Check the opponent's best defensive response before committing.</p>
+                    </div>
+
+                    <div class="winning-plan-item">
+                        <span>06</span>
+                        <h3>Convert Your Advantage</h3>
+                        <p>When ahead, simplify carefully and avoid unnecessary risks.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TACTICS TRAINING -->
+
+            <div class="content-card tactics-training-card">
+
+                <span class="eyebrow">PRACTICE MAKES PROGRESS</span>
+                <h2>Test Your Tactical Thinking</h2>
+
+                <p>
+                    Practice forks, pins, skewers, discovered attacks,
+                    defensive moves and checkmate patterns.
+                </p>
+
+                <button class="primary-button" data-goto="puzzles">
+                    Open Puzzle Training →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PART 6 WILL CONTINUE HERE
+        ====================================== -->
+        <!-- PAGE 8: PUZZLE TRAINING -->
+<section class="page" id="page-puzzles">
+
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">TRAIN YOUR MIND</span>
+            <h1>Puzzle Training</h1>
+            <p>Improve your chess vision, tactics and calculation skills.</p>
+        </div>
+    </div>
+
+    <div class="puzzle-hero">
+        <div class="puzzle-hero-content">
+            <span class="status-label">DAILY CHALLENGE</span>
+            <h2>Think Before You Move.</h2>
+            <p>
+                Find the strongest move. Train your calculation.
+                Build your chess intelligence one puzzle at a time.
+            </p>
+            <button class="primary-button" id="startDailyPuzzle">
+                Start Daily Puzzle
+            </button>
+        </div>
+        <div class="puzzle-hero-icon">♟</div>
+    </div>
+
+    <div class="section-heading">
+        <h2>Choose Your Training</h2>
+        <p>Select a category to sharpen a particular skill.</p>
+    </div>
+
+    <div class="puzzle-category-grid">
+
+        <article class="puzzle-category-card">
+            <div class="category-icon">⚔️</div>
+            <h3>Tactical Training</h3>
+            <p>Forks, pins, skewers and discovered attacks.</p>
+            <button class="secondary-button" data-puzzle-category="tactics">
+                Explore Tactics
+            </button>
+        </article>
+
+        <article class="puzzle-category-card">
+            <div class="category-icon">♚</div>
+            <h3>Checkmate Puzzles</h3>
+            <p>Practice Mate in 1, Mate in 2 and Mate in 3.</p>
+            <button class="secondary-button" data-puzzle-category="mate">
+                Find Checkmate
+            </button>
+        </article>
+
+        <article class="puzzle-category-card">
+            <div class="category-icon">🧠</div>
+            <h3>Strategic Thinking</h3>
+            <p>Improve positional understanding and planning.</p>
+            <button class="secondary-button" data-puzzle-category="strategy">
+                Train Strategy
+            </button>
+        </article>
+
+        <article class="puzzle-category-card">
+            <div class="category-icon">⏱</div>
+            <h3>Speed Challenge</h3>
+            <p>Practice finding strong moves under time pressure.</p>
+            <button class="secondary-button" data-puzzle-category="speed">
+                Start Challenge
+            </button>
+        </article>
+
+    </div>
+
+    <div class="section-heading">
+        <h2>Difficulty Level</h2>
+        <p>Choose a level that matches your current experience.</p>
+    </div>
+
+    <div class="difficulty-grid">
+        <button class="difficulty-card" data-difficulty="beginner">
+            <span>01</span>
+            <h3>Beginner</h3>
+            <p>Learn basic tactical patterns.</p>
+        </button>
+
+        <button class="difficulty-card" data-difficulty="intermediate">
+            <span>02</span>
+            <h3>Intermediate</h3>
+            <p>Calculate combinations and variations.</p>
+        </button>
+
+        <button class="difficulty-card" data-difficulty="advanced">
+            <span>03</span>
+            <h3>Advanced</h3>
+            <p>Handle complex chess positions.</p>
+        </button>
+    </div>
+
+    <div class="section-heading">
+        <h2>Your Puzzle Statistics</h2>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span>Total Solved</span>
+            <strong id="puzzlesSolved">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Accuracy</span>
+            <strong id="puzzleAccuracy">0%</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Current Streak</span>
+            <strong id="puzzleStreak">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Best Streak</span>
+            <strong id="bestPuzzleStreak">0</strong>
+        </div>
+    </div>
+
+    <div class="puzzle-workspace" id="puzzleWorkspace">
+        <div class="section-heading">
+            <h2>Practice Workspace</h2>
+            <p>Your selected puzzle will appear here.</p>
+        </div>
+
+        <div class="puzzle-placeholder">
+            <div class="placeholder-icon">♟</div>
+            <h3>Ready to Challenge Yourself?</h3>
+            <p>
+                Select a training category or difficulty level
+                to begin your puzzle session.
+            </p>
+        </div>
+    </div>
+
+</section>
+<!-- ========================================= -->
+<!-- PAGE 9: GAME ANALYSIS -->
+<!-- ========================================= -->
+
+<section class="page" id="page-analysis">
+
+    <!-- PAGE HEADING -->
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">UNDERSTAND YOUR GAME</span>
+            <h1>Game Analysis</h1>
+            <p>Discover your mistakes, understand your decisions and improve your chess.</p>
+        </div>
+    </div>
+
+
+    <!-- ANALYSIS HERO -->
+    <div class="analysis-hero">
+
+        <div class="analysis-hero-content">
+            <span class="status-label">AI GAME REVIEW</span>
+
+            <h2>Every Move Has a Story.</h2>
+
+            <p>
+                Review your completed games, discover missed opportunities,
+                understand critical positions and learn from every decision.
+            </p>
+
+            <button class="primary-button" id="startAnalysisButton">
+                Analyse a Game →
+            </button>
+        </div>
+
+        <div class="analysis-hero-icon">
+            ♟
+        </div>
+
+    </div>
+
+
+    <!-- IMPORT GAME -->
+    <div class="section-heading">
+        <h2>Import Your Game</h2>
+        <p>Upload a PGN file or paste your chess game notation.</p>
+    </div>
+
+
+    <div class="analysis-import-grid">
+
+        <div class="analysis-import-card">
+
+            <div class="import-icon">📁</div>
+
+            <h3>Upload PGN File</h3>
+
+            <p>
+                Import your previously played chess game
+                using a PGN file.
+            </p>
+
+            <label class="secondary-button" for="pgnFileInput">
+                Choose PGN File
+            </label>
+
+            <input
+                type="file"
+                id="pgnFileInput"
+                accept=".pgn"
+                hidden
+            >
+
+            <span id="pgnFileName" class="file-name">
+                No file selected
+            </span>
+
+        </div>
+
+
+        <div class="analysis-import-card">
+
+            <div class="import-icon">⌨</div>
+
+            <h3>Paste Game PGN</h3>
+
+            <p>
+                Paste your game notation directly
+                into the analysis workspace.
+            </p>
+
+            <textarea
+                id="pgnInput"
+                class="analysis-pgn-input"
+                placeholder="Paste your PGN notation here..."
+                rows="5"
+            ></textarea>
+
+            <button
+                class="secondary-button"
+                id="loadPgnButton"
+            >
+                Load Game
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- GAME OVERVIEW -->
+    <div class="section-heading">
+        <h2>Game Overview</h2>
+        <p>Your game performance at a glance.</p>
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <span>Game Accuracy</span>
+            <strong id="analysisAccuracy">--%</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Total Moves</span>
+            <strong id="analysisTotalMoves">--</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Best Moves</span>
+            <strong id="analysisBestMoves">--</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Game Result</span>
+            <strong id="analysisResult">--</strong>
+        </div>
+
+    </div>
+
+
+    <!-- MOVE QUALITY -->
+    <div class="section-heading">
+        <h2>Move Quality</h2>
+        <p>Understand the quality of your decisions.</p>
+    </div>
+
+
+    <div class="move-quality-grid">
+
+        <div class="quality-card brilliant">
+            <span class="quality-symbol">✦</span>
+            <h3>Brilliant</h3>
+            <strong id="brilliantMoves">0</strong>
+            <p>Exceptional strategic moves.</p>
+        </div>
+
+
+        <div class="quality-card great">
+            <span class="quality-symbol">★</span>
+            <h3>Great</h3>
+            <strong id="greatMoves">0</strong>
+            <p>Very strong decisions.</p>
+        </div>
+
+
+        <div class="quality-card good">
+            <span class="quality-symbol">✓</span>
+            <h3>Good</h3>
+            <strong id="goodMoves">0</strong>
+            <p>Solid chess moves.</p>
+        </div>
+
+
+        <div class="quality-card inaccuracy">
+            <span class="quality-symbol">!</span>
+            <h3>Inaccuracies</h3>
+            <strong id="inaccuracyMoves">0</strong>
+            <p>Small mistakes in decisions.</p>
+        </div>
+
+
+        <div class="quality-card mistake">
+            <span class="quality-symbol">⚠</span>
+            <h3>Mistakes</h3>
+            <strong id="mistakeMoves">0</strong>
+            <p>Moves that weaken your position.</p>
+        </div>
+
+
+        <div class="quality-card blunder">
+            <span class="quality-symbol">✕</span>
+            <h3>Blunders</h3>
+            <strong id="blunderMoves">0</strong>
+            <p>Major missed opportunities.</p>
+        </div>
+
+    </div>
+
+
+    <!-- POSITION ANALYSIS -->
+    <div class="section-heading">
+        <h2>Position Analysis</h2>
+        <p>Explore important moments from your game.</p>
+    </div>
+
+
+    <div class="analysis-workspace">
+
+        <div class="analysis-board-panel">
+
+            <div class="panel-header">
+                <h3>Chess Position</h3>
+                <span class="status-label">GAME REVIEW</span>
+            </div>
+
+            <div
+                class="analysis-board-placeholder"
+                id="analysisBoard"
+            >
+                <div class="placeholder-icon">♟</div>
+
+                <h3>Position Viewer</h3>
+
+                <p>
+                    Import a game to explore its chess positions here.
+                </p>
+            </div>
+
+            <div class="analysis-board-controls">
+
+                <button
+                    class="secondary-button"
+                    id="analysisPreviousMove"
+                >
+                    ← Previous
+                </button>
+
+                <button
+                    class="secondary-button"
+                    id="analysisNextMove"
+                >
+                    Next →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="analysis-details-panel">
+
+            <div class="panel-header">
+                <h3>AI Insights</h3>
+                <span class="status-label">COACH</span>
+            </div>
+
+            <div id="analysisInsights">
+
+                <div class="insight-placeholder">
+
+                    <div class="placeholder-icon">🧠</div>
+
+                    <h3>Waiting for Your Game</h3>
+
+                    <p>
+                        Import a PGN to receive position-specific
+                        explanations and improvement suggestions.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MOVE-BY-MOVE REVIEW -->
+    <div class="section-heading">
+        <h2>Move-by-Move Review</h2>
+        <p>Examine your decisions throughout the game.</p>
+    </div>
+
+
+    <div class="analysis-table-container">
+
+        <table class="analysis-table">
+
+            <thead>
+                <tr>
+                    <th>Move</th>
+                    <th>White</th>
+                    <th>Black</th>
+                    <th>Quality</th>
+                    <th>Evaluation</th>
+                </tr>
+            </thead>
+
+            <tbody id="analysisMoveTable">
+
+                <tr>
+                    <td colspan="5" class="empty-table-message">
+                        Import a game to view move-by-move analysis.
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- IMPROVEMENT REPORT -->
+    <div class="section-heading">
+        <h2>Improvement Report</h2>
+        <p>Find out what you should focus on next.</p>
+    </div>
+
+
+    <div class="improvement-grid">
+
+        <div class="improvement-card">
+
+            <div class="improvement-icon">💪</div>
+
+            <h3>Your Strengths</h3>
+
+            <div id="analysisStrengths">
+                <p>Strengths will appear after game analysis.</p>
+            </div>
+
+        </div>
+
+
+        <div class="improvement-card">
+
+            <div class="improvement-icon">🎯</div>
+
+            <h3>Areas to Improve</h3>
+
+            <div id="analysisWeaknesses">
+                <p>Improvement areas will appear after game analysis.</p>
+            </div>
+
+        </div>
+
+
+        <div class="improvement-card">
+
+            <div class="improvement-icon">📚</div>
+
+            <h3>Recommended Training</h3>
+
+            <div id="analysisRecommendations">
+                <p>Personalized training will appear here.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FINAL REPORT -->
+    <div class="analysis-report-card">
+
+        <div>
+            <span class="eyebrow">YOUR CHESS JOURNEY</span>
+
+            <h2>Learn From Every Game.</h2>
+
+            <p>
+                Your mistakes are not the end of the game.
+                They are opportunities to understand chess more deeply.
+            </p>
+        </div>
+
+        <button
+            class="primary-button"
+            id="exportAnalysisButton"
+        >
+            Export Analysis Report
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- END OF PAGE 9: GAME ANALYSIS -->
+<!-- ========================================= -->
+
+<!-- ========================================= -->
+<!-- PAGE 10: GAME HISTORY -->
+<!-- ========================================= -->
+
+<section class="page" id="page-history">
+
+    <!-- PAGE HEADING -->
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">YOUR CHESS JOURNEY</span>
+            <h1>Game History</h1>
+            <p>Every match, every decision and every improvement — all recorded.</p>
+        </div>
+    </div>
+
+
+    <!-- HISTORY HERO -->
+    <div class="history-hero">
+
+        <div class="history-hero-content">
+            <span class="status-label">PERSONAL GAME ARCHIVE</span>
+
+            <h2>Your Journey, Move by Move.</h2>
+
+            <p>
+                Explore your previous games, track your results,
+                revisit important matches and learn from your past performances.
+            </p>
+
+            <button class="primary-button" id="historyViewGames">
+                Explore My Games →
+            </button>
+        </div>
+
+        <div class="history-hero-icon">
+            ♜
+        </div>
+
+    </div>
+
+
+    <!-- HISTORY STATISTICS -->
+    <div class="section-heading">
+        <h2>Match Statistics</h2>
+        <p>A snapshot of your chess journey.</p>
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <span>Total Games</span>
+            <strong id="historyTotalGames">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Wins</span>
+            <strong id="historyWins">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Losses</span>
+            <strong id="historyLosses">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Draws</span>
+            <strong id="historyDraws">0</strong>
+        </div>
+
+    </div>
+
+
+    <!-- PERFORMANCE SUMMARY -->
+    <div class="section-heading">
+        <h2>Performance Summary</h2>
+        <p>Understand your overall match performance.</p>
+    </div>
+
+
+    <div class="history-performance-grid">
+
+        <div class="history-performance-card">
+
+            <span class="performance-label">WIN RATE</span>
+
+            <strong id="historyWinRate">0%</strong>
+
+            <div class="performance-progress">
+                <div
+                    class="performance-progress-fill"
+                    id="historyWinRateBar"
+                    style="width: 0%;"
+                ></div>
+            </div>
+
+            <p>Percentage of games won.</p>
+
+        </div>
+
+
+        <div class="history-performance-card">
+
+            <span class="performance-label">AVERAGE GAME LENGTH</span>
+
+            <strong id="historyAverageMoves">--</strong>
+
+            <p>Average number of moves per game.</p>
+
+        </div>
+
+
+        <div class="history-performance-card">
+
+            <span class="performance-label">BEST STREAK</span>
+
+            <strong id="historyBestStreak">0</strong>
+
+            <p>Your longest winning streak.</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- GAME FILTERS -->
+    <div class="section-heading">
+        <h2>All Games</h2>
+        <p>Search and filter your previous matches.</p>
+    </div>
+
+
+    <div class="history-filter-panel">
+
+        <div class="history-search-box">
+            <span>⌕</span>
+
+            <input
+                type="search"
+                id="historySearch"
+                placeholder="Search opponent or game..."
+            >
+        </div>
+
+
+        <div class="history-filter-controls">
+
+            <select id="historyResultFilter">
+                <option value="all">All Results</option>
+                <option value="win">Wins</option>
+                <option value="loss">Losses</option>
+                <option value="draw">Draws</option>
+            </select>
+
+
+            <select id="historyColorFilter">
+                <option value="all">Both Colors</option>
+                <option value="white">Played White</option>
+                <option value="black">Played Black</option>
+            </select>
+
+
+            <select id="historyTimeFilter">
+                <option value="all">All Time Controls</option>
+                <option value="bullet">Bullet</option>
+                <option value="blitz">Blitz</option>
+                <option value="rapid">Rapid</option>
+                <option value="classical">Classical</option>
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <!-- GAME HISTORY TABLE -->
+    <div class="history-table-container">
+
+        <table class="history-table">
+
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Opponent</th>
+                    <th>Color</th>
+                    <th>Time Control</th>
+                    <th>Moves</th>
+                    <th>Result</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+
+            <tbody id="gameHistoryTable">
+
+                <tr>
+                    <td colspan="7" class="empty-table-message">
+
+                        <div class="history-empty-state">
+
+                            <div class="placeholder-icon">♟</div>
+
+                            <h3>No Games Recorded Yet</h3>
+
+                            <p>
+                                Your completed matches will appear here.
+                                Start playing to build your personal game archive.
+                            </p>
+
+                        </div>
+
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- RECENT GAMES -->
+    <div class="section-heading">
+        <h2>Recent Matches</h2>
+        <p>Quick access to your latest games.</p>
+    </div>
+
+
+    <div class="recent-games-container" id="recentGamesList">
+
+        <div class="recent-games-empty">
+
+            <div class="placeholder-icon">🏆</div>
+
+            <h3>Your Recent Matches Will Appear Here</h3>
+
+            <p>
+                Once you complete your games,
+                you can revisit them from this section.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- GAME DETAILS -->
+    <div class="section-heading">
+        <h2>Game Details</h2>
+        <p>Select a match to explore its information.</p>
+    </div>
+
+
+    <div class="history-details-panel" id="historyGameDetails">
+
+        <div class="history-details-placeholder">
+
+            <div class="placeholder-icon">♜</div>
+
+            <h3>Select a Game</h3>
+
+            <p>
+                Game details, move notation, result,
+                PGN and analysis access will appear here.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- HISTORY ACTIONS -->
+    <div class="history-actions-card">
+
+        <div>
+            <span class="eyebrow">YOUR PERSONAL ARCHIVE</span>
+
+            <h2>Keep Every Game.</h2>
+
+            <p>
+                Your previous matches can become your
+                most useful learning resource.
+            </p>
+        </div>
+
+
+        <div class="history-action-buttons">
+
+            <button
+                class="secondary-button"
+                id="exportGameHistory"
+            >
+                Export History
+            </button>
+
+            <button
+                class="secondary-button"
+                id="clearGameHistory"
+            >
+                Clear History
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- END OF PAGE 10: GAME HISTORY -->
+<!-- ========================================= -->
+
+<!-- ========================================= -->
+<!-- PAGE 11: MY PROGRESS -->
+<!-- ========================================= -->
+
+<section class="page" id="page-progress">
+
+    <!-- PAGE HEADING -->
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">YOUR PERSONAL CHESS JOURNEY</span>
+            <h1>My Progress</h1>
+            <p>Track your growth, understand your performance and become a stronger player.</p>
+        </div>
+    </div>
+
+
+    <!-- PROGRESS HERO -->
+    <div class="progress-hero">
+
+        <div class="progress-hero-content">
+
+            <span class="status-label">PLAYER DEVELOPMENT</span>
+
+            <h2>Every Game Makes You Better.</h2>
+
+            <p>
+                Your progress is more than winning or losing.
+                Track your learning, consistency, decision-making
+                and chess improvement over time.
+            </p>
+
+            <button
+                class="primary-button"
+                data-goto="analysis"
+            >
+                Review My Performance →
+            </button>
+
+        </div>
+
+        <div class="progress-hero-icon">
+            📈
+        </div>
+
+    </div>
+
+
+    <!-- OVERALL PERFORMANCE -->
+    <div class="section-heading">
+        <h2>Overall Performance</h2>
+        <p>Your chess journey in numbers.</p>
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <span>Total Games</span>
+            <strong id="progressTotalGames">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Total Wins</span>
+            <strong id="progressTotalWins">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Win Rate</span>
+            <strong id="progressWinRate">0%</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Average Accuracy</span>
+            <strong id="progressAccuracy">--%</strong>
+        </div>
+
+    </div>
+
+
+    <!-- RATING SECTION -->
+    <div class="section-heading">
+        <h2>Rating Development</h2>
+        <p>Monitor your chess rating as you improve.</p>
+    </div>
+
+
+    <div class="rating-overview-grid">
+
+        <div class="rating-main-card">
+
+            <span class="performance-label">CURRENT RATING</span>
+
+            <div class="rating-value-row">
+                <strong id="currentChessRating">--</strong>
+                <span class="rating-badge">CHESS RATING</span>
+            </div>
+
+            <p id="ratingProgressMessage">
+                Your rating information will appear here.
+            </p>
+
+            <div class="rating-details">
+
+                <div>
+                    <span>Previous Rating</span>
+                    <strong id="previousChessRating">--</strong>
+                </div>
+
+                <div>
+                    <span>Peak Rating</span>
+                    <strong id="peakChessRating">--</strong>
+                </div>
+
+                <div>
+                    <span>Rating Change</span>
+                    <strong id="ratingChange">--</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="rating-chart-card">
+
+            <div class="panel-header">
+                <h3>Rating History</h3>
+
+                <select id="ratingPeriod">
+                    <option value="all">All Time</option>
+                    <option value="30">Last 30 Days</option>
+                    <option value="90">Last 90 Days</option>
+                </select>
+            </div>
+
+            <div class="rating-chart-placeholder" id="ratingChart">
+
+                <div class="placeholder-icon">📊</div>
+
+                <h3>Rating Chart</h3>
+
+                <p>
+                    Your rating history will be visualized here
+                    once rating records are available.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SKILL DEVELOPMENT -->
+    <div class="section-heading">
+        <h2>Skill Development</h2>
+        <p>Understand the different areas of your chess abilities.</p>
+    </div>
+
+
+    <div class="skill-progress-grid">
+
+        <div class="skill-progress-card">
+
+            <div class="skill-card-heading">
+                <span>♟</span>
+                <h3>Opening Knowledge</h3>
+            </div>
+
+            <div class="skill-progress-track">
+                <div
+                    class="skill-progress-fill"
+                    id="openingSkillProgress"
+                    style="width: 0%;"
+                ></div>
+            </div>
+
+            <div class="skill-progress-info">
+                <span>Progress</span>
+                <strong id="openingSkillValue">--%</strong>
+            </div>
+
+        </div>
+
+
+        <div class="skill-progress-card">
+
+            <div class="skill-card-heading">
+                <span>⚔</span>
+                <h3>Tactical Vision</h3>
+            </div>
+
+            <div class="skill-progress-track">
+                <div
+                    class="skill-progress-fill"
+                    id="tacticalSkillProgress"
+                    style="width: 0%;"
+                ></div>
+            </div>
+
+            <div class="skill-progress-info">
+                <span>Progress</span>
+                <strong id="tacticalSkillValue">--%</strong>
+            </div>
+
+        </div>
+
+
+        <div class="skill-progress-card">
+
+            <div class="skill-card-heading">
+                <span>♚</span>
+                <h3>Endgame Knowledge</h3>
+            </div>
+
+            <div class="skill-progress-track">
+                <div
+                    class="skill-progress-fill"
+                    id="endgameSkillProgress"
+                    style="width: 0%;"
+                ></div>
+            </div>
+
+            <div class="skill-progress-info">
+                <span>Progress</span>
+                <strong id="endgameSkillValue">--%</strong>
+            </div>
+
+        </div>
+
+
+        <div class="skill-progress-card">
+
+            <div class="skill-card-heading">
+                <span>🧠</span>
+                <h3>Calculation Skills</h3>
+            </div>
+
+            <div class="skill-progress-track">
+                <div
+                    class="skill-progress-fill"
+                    id="calculationSkillProgress"
+                    style="width: 0%;"
+                ></div>
+            </div>
+
+            <div class="skill-progress-info">
+                <span>Progress</span>
+                <strong id="calculationSkillValue">--%</strong>
+            </div>
+
+        </div>
+
+
+        <div class="skill-progress-card">
+
+            <div class="skill-card-heading">
+                <span>🛡</span>
+                <h3>Defensive Skills</h3>
+            </div>
+
+            <div class="skill-progress-track">
+                <div
+                    class="skill-progress-fill"
+                    id="defensiveSkillProgress"
+                    style="width: 0%;"
+                ></div>
+            </div>
+
+            <div class="skill-progress-info">
+                <span>Progress</span>
+                <strong id="defensiveSkillValue">--%</strong>
+            </div>
+
+        </div>
+
+
+        <div class="skill-progress-card">
+
+            <div class="skill-card-heading">
+                <span>🎯</span>
+                <h3>Strategic Planning</h3>
+            </div>
+
+            <div class="skill-progress-track">
+                <div
+                    class="skill-progress-fill"
+                    id="strategySkillProgress"
+                    style="width: 0%;"
+                ></div>
+            </div>
+
+            <div class="skill-progress-info">
+                <span>Progress</span>
+                <strong id="strategySkillValue">--%</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- STRENGTHS AND WEAKNESSES -->
+    <div class="section-heading">
+        <h2>Strengths & Weaknesses</h2>
+        <p>Know where you perform well and where you can improve.</p>
+    </div>
+
+
+    <div class="strength-weakness-grid">
+
+        <div class="strength-card">
+
+            <div class="improvement-icon">💪</div>
+
+            <h3>Your Strengths</h3>
+
+            <div id="progressStrengths">
+
+                <p>
+                    Complete some games and training sessions
+                    to discover your strongest areas.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="weakness-card">
+
+            <div class="improvement-icon">🎯</div>
+
+            <h3>Areas to Improve</h3>
+
+            <div id="progressWeaknesses">
+
+                <p>
+                    Your recurring mistakes and weaker areas
+                    will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TRAINING ACTIVITY -->
+    <div class="section-heading">
+        <h2>Training Activity</h2>
+        <p>Build consistency through regular chess practice.</p>
+    </div>
+
+
+    <div class="activity-card">
+
+        <div class="panel-header">
+            <div>
+                <h3>Practice Activity</h3>
+                <p>Your recorded training sessions.</p>
+            </div>
+
+            <span class="status-label">ACTIVITY TRACKER</span>
+        </div>
+
+
+        <div class="activity-heatmap" id="activityHeatmap">
+
+            <div class="activity-placeholder">
+
+                <div class="placeholder-icon">📅</div>
+
+                <h3>Your Activity Calendar</h3>
+
+                <p>
+                    Your practice history will appear here
+                    as you complete chess sessions.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="activity-legend">
+
+            <span>Less Activity</span>
+
+            <span class="activity-dot level-0"></span>
+            <span class="activity-dot level-1"></span>
+            <span class="activity-dot level-2"></span>
+            <span class="activity-dot level-3"></span>
+
+            <span>More Activity</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- PERSONAL GOALS -->
+    <div class="section-heading">
+        <h2>My Chess Goals</h2>
+        <p>Set targets and follow your improvement journey.</p>
+    </div>
+
+
+    <div class="goals-container">
+
+        <div class="goals-header">
+
+            <div>
+                <h3>Personal Goals</h3>
+                <p>Choose goals that help you improve.</p>
+            </div>
+
+            <button
+                class="secondary-button"
+                id="addChessGoal"
+            >
+                + Add Goal
+            </button>
+
+        </div>
+
+
+        <div id="chessGoalsList">
+
+            <div class="goals-empty-state">
+
+                <div class="placeholder-icon">🎯</div>
+
+                <h3>No Goals Added Yet</h3>
+
+                <p>
+                    Add your first chess goal and start
+                    tracking your progress.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACHIEVEMENTS PREVIEW -->
+    <div class="section-heading">
+        <h2>Achievements</h2>
+        <p>Celebrate the milestones of your chess journey.</p>
+    </div>
+
+
+    <div class="progress-achievements-grid">
+
+        <div class="progress-achievement-card">
+
+            <div class="achievement-icon">🏆</div>
+
+            <h3>First Victory</h3>
+
+            <p>Complete your first recorded win.</p>
+
+            <span class="achievement-status" id="firstWinStatus">
+                Not unlocked
+            </span>
+
+        </div>
+
+
+        <div class="progress-achievement-card">
+
+            <div class="achievement-icon">🧩</div>
+
+            <h3>Puzzle Explorer</h3>
+
+            <p>Solve your first 10 chess puzzles.</p>
+
+            <span class="achievement-status" id="puzzleExplorerStatus">
+                Not unlocked
+            </span>
+
+        </div>
+
+
+        <div class="progress-achievement-card">
+
+            <div class="achievement-icon">📚</div>
+
+            <h3>Dedicated Learner</h3>
+
+            <p>Complete your first learning lesson.</p>
+
+            <span class="achievement-status" id="learnerStatus">
+                Not unlocked
+            </span>
+
+        </div>
+
+
+        <div class="progress-achievement-card">
+
+            <div class="achievement-icon">🔥</div>
+
+            <h3>Consistency</h3>
+
+            <p>Complete practice sessions on 7 different days.</p>
+
+            <span class="achievement-status" id="consistencyStatus">
+                Not unlocked
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROGRESS SUMMARY -->
+    <div class="progress-summary-card">
+
+        <div>
+            <span class="eyebrow">KEEP MOVING FORWARD</span>
+
+            <h2>Progress Is Built One Move at a Time.</h2>
+
+            <p>
+                Study your games, practise your weaknesses
+                and stay consistent with your chess journey.
+            </p>
+        </div>
+
+        <button
+            class="primary-button"
+            data-goto="learn"
+        >
+            Continue Learning →
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- END OF PAGE 11: MY PROGRESS -->
+<!-- ========================================= -->
+
+<!-- ========================================= -->
+<!-- PAGE 12: ACHIEVEMENTS -->
+<!-- ========================================= -->
+
+<section class="page" id="page-achievements">
+
+    <!-- PAGE HEADING -->
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">RECOGNIZE YOUR GROWTH</span>
+            <h1>Achievements</h1>
+            <p>Every milestone matters. Collect achievements as you grow into a stronger chess player.</p>
+        </div>
+    </div>
+
+
+    <!-- ACHIEVEMENT HERO -->
+    <div class="achievement-hero">
+
+        <div class="achievement-hero-content">
+            <span class="status-label">YOUR CHESS HALL OF FAME</span>
+
+            <h2>Earn Your Place on the Board.</h2>
+
+            <p>
+                Complete games, solve puzzles, learn new concepts
+                and unlock milestones throughout your chess journey.
+            </p>
+
+            <button
+                class="primary-button"
+                data-achievement-filter="all"
+            >
+                Explore Achievements →
+            </button>
+        </div>
+
+        <div class="achievement-hero-icon">
+            🏆
+        </div>
+
+    </div>
+
+
+    <!-- ACHIEVEMENT OVERVIEW -->
+    <div class="section-heading">
+        <h2>Your Achievement Overview</h2>
+        <p>See how far you have progressed.</p>
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <span>Unlocked</span>
+            <strong id="unlockedAchievements">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Total Available</span>
+            <strong id="totalAchievements">20</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Achievement Points</span>
+            <strong id="achievementPoints">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Completion</span>
+            <strong id="achievementCompletion">0%</strong>
+        </div>
+
+    </div>
+
+
+    <!-- ACHIEVEMENT PROGRESS -->
+    <div class="achievement-progress-card">
+
+        <div class="achievement-progress-heading">
+            <div>
+                <h3>Overall Completion</h3>
+                <p>Your journey towards unlocking all achievements.</p>
+            </div>
+
+            <strong id="achievementProgressText">0 / 20</strong>
+        </div>
+
+        <div class="achievement-progress-track">
+            <div
+                class="achievement-progress-fill"
+                id="achievementProgressBar"
+                style="width: 0%;"
+            ></div>
+        </div>
+
+        <p id="achievementProgressMessage">
+            Start playing and learning to unlock your first achievement.
+        </p>
+
+    </div>
+
+
+    <!-- FEATURED ACHIEVEMENT -->
+    <div class="section-heading">
+        <h2>Featured Achievement</h2>
+        <p>Your highlighted milestone.</p>
+    </div>
+
+
+    <div class="featured-achievement-card">
+
+        <div class="featured-achievement-icon">
+            👑
+        </div>
+
+        <div class="featured-achievement-content">
+
+            <span class="status-label">FEATURED MILESTONE</span>
+
+            <h2>Chess Master Journey</h2>
+
+            <p>
+                A collection of milestones that celebrates
+                your dedication, consistency and improvement.
+            </p>
+
+            <span class="achievement-status" id="featuredAchievementStatus">
+                In Progress
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- CATEGORY FILTERS -->
+    <div class="section-heading">
+        <h2>Explore Achievements</h2>
+        <p>Choose a category to discover its milestones.</p>
+    </div>
+
+
+    <div class="achievement-filter-bar">
+
+        <button
+            class="achievement-filter active"
+            data-achievement-filter="all"
+        >
+            All
+        </button>
+
+        <button
+            class="achievement-filter"
+            data-achievement-filter="games"
+        >
+            Games
+        </button>
+
+        <button
+            class="achievement-filter"
+            data-achievement-filter="puzzles"
+        >
+            Puzzles
+        </button>
+
+        <button
+            class="achievement-filter"
+            data-achievement-filter="learning"
+        >
+            Learning
+        </button>
+
+        <button
+            class="achievement-filter"
+            data-achievement-filter="consistency"
+        >
+            Consistency
+        </button>
+
+        <button
+            class="achievement-filter"
+            data-achievement-filter="special"
+        >
+            Special
+        </button>
+
+    </div>
+
+
+    <!-- ACHIEVEMENT COLLECTION -->
+    <div class="achievement-grid" id="achievementGrid">
+
+
+        <!-- GAME ACHIEVEMENTS -->
+
+        <article
+            class="achievement-card locked"
+            data-category="games"
+            data-achievement-id="first-game"
+        >
+
+            <div class="achievement-card-icon">♟</div>
+
+            <span class="achievement-rarity">COMMON</span>
+
+            <h3>First Move</h3>
+
+            <p>Complete your first recorded chess game.</p>
+
+            <div class="achievement-card-footer">
+                <span>+10 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="games"
+            data-achievement-id="first-win"
+        >
+
+            <div class="achievement-card-icon">🏆</div>
+
+            <span class="achievement-rarity">COMMON</span>
+
+            <h3>First Victory</h3>
+
+            <p>Win your first recorded chess game.</p>
+
+            <div class="achievement-card-footer">
+                <span>+20 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="games"
+            data-achievement-id="ten-games"
+        >
+
+            <div class="achievement-card-icon">⚔</div>
+
+            <span class="achievement-rarity">UNCOMMON</span>
+
+            <h3>Getting Started</h3>
+
+            <p>Complete 10 recorded games.</p>
+
+            <div class="achievement-card-footer">
+                <span>+30 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="games"
+            data-achievement-id="fifty-games"
+        >
+
+            <div class="achievement-card-icon">♜</div>
+
+            <span class="achievement-rarity">RARE</span>
+
+            <h3>Experienced Player</h3>
+
+            <p>Complete 50 recorded games.</p>
+
+            <div class="achievement-card-footer">
+                <span>+75 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <!-- PUZZLE ACHIEVEMENTS -->
+
+        <article
+            class="achievement-card locked"
+            data-category="puzzles"
+            data-achievement-id="first-puzzle"
+        >
+
+            <div class="achievement-card-icon">🧩</div>
+
+            <span class="achievement-rarity">COMMON</span>
+
+            <h3>First Solution</h3>
+
+            <p>Solve your first chess puzzle.</p>
+
+            <div class="achievement-card-footer">
+                <span>+10 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="puzzles"
+            data-achievement-id="ten-puzzles"
+        >
+
+            <div class="achievement-card-icon">🧠</div>
+
+            <span class="achievement-rarity">UNCOMMON</span>
+
+            <h3>Puzzle Explorer</h3>
+
+            <p>Solve 10 chess puzzles.</p>
+
+            <div class="achievement-card-footer">
+                <span>+30 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="puzzles"
+            data-achievement-id="fifty-puzzles"
+        >
+
+            <div class="achievement-card-icon">🎯</div>
+
+            <span class="achievement-rarity">RARE</span>
+
+            <h3>Tactical Thinker</h3>
+
+            <p>Solve 50 chess puzzles.</p>
+
+            <div class="achievement-card-footer">
+                <span>+75 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="puzzles"
+            data-achievement-id="perfect-puzzle"
+        >
+
+            <div class="achievement-card-icon">💎</div>
+
+            <span class="achievement-rarity">EPIC</span>
+
+            <h3>Perfect Calculation</h3>
+
+            <p>Complete a puzzle session with 100% accuracy.</p>
+
+            <div class="achievement-card-footer">
+                <span>+100 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <!-- LEARNING ACHIEVEMENTS -->
+
+        <article
+            class="achievement-card locked"
+            data-category="learning"
+            data-achievement-id="first-lesson"
+        >
+
+            <div class="achievement-card-icon">📚</div>
+
+            <span class="achievement-rarity">COMMON</span>
+
+            <h3>Curious Mind</h3>
+
+            <p>Complete your first chess lesson.</p>
+
+            <div class="achievement-card-footer">
+                <span>+15 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="learning"
+            data-achievement-id="opening-student"
+        >
+
+            <div class="achievement-card-icon">♙</div>
+
+            <span class="achievement-rarity">UNCOMMON</span>
+
+            <h3>Opening Student</h3>
+
+            <p>Study five different chess openings.</p>
+
+            <div class="achievement-card-footer">
+                <span>+35 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="learning"
+            data-achievement-id="rules-master"
+        >
+
+            <div class="achievement-card-icon">📖</div>
+
+            <span class="achievement-rarity">UNCOMMON</span>
+
+            <h3>Rules Master</h3>
+
+            <p>Complete the chess rules learning quiz.</p>
+
+            <div class="achievement-card-footer">
+                <span>+35 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="learning"
+            data-achievement-id="endgame-student"
+        >
+
+            <div class="achievement-card-icon">♚</div>
+
+            <span class="achievement-rarity">RARE</span>
+
+            <h3>Endgame Student</h3>
+
+            <p>Complete five endgame lessons.</p>
+
+            <div class="achievement-card-footer">
+                <span>+60 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <!-- CONSISTENCY ACHIEVEMENTS -->
+
+        <article
+            class="achievement-card locked"
+            data-category="consistency"
+            data-achievement-id="three-day-streak"
+        >
+
+            <div class="achievement-card-icon">🔥</div>
+
+            <span class="achievement-rarity">COMMON</span>
+
+            <h3>Getting Consistent</h3>
+
+            <p>Practise on three different days in a row.</p>
+
+            <div class="achievement-card-footer">
+                <span>+20 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="consistency"
+            data-achievement-id="seven-day-streak"
+        >
+
+            <div class="achievement-card-icon">🌟</div>
+
+            <span class="achievement-rarity">RARE</span>
+
+            <h3>Weekly Dedication</h3>
+
+            <p>Practise on seven different days in a row.</p>
+
+            <div class="achievement-card-footer">
+                <span>+60 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="consistency"
+            data-achievement-id="ten-lessons"
+        >
+
+            <div class="achievement-card-icon">🎓</div>
+
+            <span class="achievement-rarity">RARE</span>
+
+            <h3>Dedicated Learner</h3>
+
+            <p>Complete 10 learning sessions.</p>
+
+            <div class="achievement-card-footer">
+                <span>+60 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="consistency"
+            data-achievement-id="improvement"
+        >
+
+            <div class="achievement-card-icon">📈</div>
+
+            <span class="achievement-rarity">EPIC</span>
+
+            <h3>Personal Growth</h3>
+
+            <p>Demonstrate measurable improvement in your game reviews.</p>
+
+            <div class="achievement-card-footer">
+                <span>+100 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <!-- SPECIAL ACHIEVEMENTS -->
+
+        <article
+            class="achievement-card locked"
+            data-category="special"
+            data-achievement-id="comeback"
+        >
+
+            <div class="achievement-card-icon">⚡</div>
+
+            <span class="achievement-rarity">EPIC</span>
+
+            <h3>Comeback Player</h3>
+
+            <p>Win a game after recovering from a difficult position.</p>
+
+            <div class="achievement-card-footer">
+                <span>+100 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="special"
+            data-achievement-id="checkmate"
+        >
+
+            <div class="achievement-card-icon">👑</div>
+
+            <span class="achievement-rarity">RARE</span>
+
+            <h3>Checkmate Artist</h3>
+
+            <p>Deliver checkmate using a variety of piece combinations.</p>
+
+            <div class="achievement-card-footer">
+                <span>+70 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="special"
+            data-achievement-id="strategist"
+        >
+
+            <div class="achievement-card-icon">♛</div>
+
+            <span class="achievement-rarity">EPIC</span>
+
+            <h3>Strategic Mind</h3>
+
+            <p>Complete the strategic thinking training programme.</p>
+
+            <div class="achievement-card-footer">
+                <span>+100 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+
+        <article
+            class="achievement-card locked"
+            data-category="special"
+            data-achievement-id="all-rounder"
+        >
+
+            <div class="achievement-card-icon">🌌</div>
+
+            <span class="achievement-rarity">LEGENDARY</span>
+
+            <h3>Chess All-Rounder</h3>
+
+            <p>Unlock achievements across every major training category.</p>
+
+            <div class="achievement-card-footer">
+                <span>+200 Points</span>
+                <span class="achievement-status">Locked</span>
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <!-- NEXT MILESTONE -->
+    <div class="section-heading">
+        <h2>Next Milestone</h2>
+        <p>Keep moving towards your next achievement.</p>
+    </div>
+
+
+    <div class="next-achievement-card">
+
+        <div class="next-achievement-icon">
+            🎯
+        </div>
+
+        <div class="next-achievement-info">
+
+            <span class="eyebrow">YOUR NEXT TARGET</span>
+
+            <h3 id="nextAchievementName">First Move</h3>
+
+            <p id="nextAchievementDescription">
+                Complete your first recorded chess game.
+            </p>
+
+            <div class="next-achievement-progress-track">
+                <div
+                    class="next-achievement-progress-fill"
+                    id="nextAchievementProgressBar"
+                    style="width: 0%;"
+                ></div>
+            </div>
+
+            <span id="nextAchievementProgressText">
+                0 / 1 completed
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACHIEVEMENT FOOTER -->
+    <div class="achievement-footer-card">
+
+        <div>
+            <span class="eyebrow">THE JOURNEY CONTINUES</span>
+
+            <h2>Play. Learn. Improve. Achieve.</h2>
+
+            <p>
+                Achievements celebrate your progress.
+                Focus on learning and let the milestones follow.
+            </p>
+        </div>
+
+        <button
+            class="primary-button"
+            data-goto="play"
+        >
+            Return to Chess Arena →
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- END OF PAGE 12: ACHIEVEMENTS -->
+<!-- ========================================= -->
+
+<!-- ========================================= -->
+<!-- PAGE 13: LEADERBOARD -->
+<!-- ========================================= -->
+
+<section class="page" id="page-leaderboard">
+
+    <!-- PAGE HEADING -->
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">COMPETE & IMPROVE</span>
+            <h1>Leaderboard</h1>
+            <p>Compare performances, celebrate achievements and challenge yourself to improve.</p>
+        </div>
+    </div>
+
+
+    <!-- LEADERBOARD HERO -->
+    <div class="leaderboard-hero">
+
+        <div class="leaderboard-hero-content">
+            <span class="status-label">GLOBAL CHESS RANKINGS</span>
+
+            <h2>Every Move Counts.</h2>
+
+            <p>
+                Follow player rankings, track competitive progress
+                and discover where you stand among other chess learners.
+            </p>
+
+            <button
+                class="primary-button"
+                data-leaderboard-filter="global"
+            >
+                Explore Rankings →
+            </button>
+        </div>
+
+        <div class="leaderboard-hero-icon">
+            🏆
+        </div>
+
+    </div>
+
+
+    <!-- LEADERBOARD OVERVIEW -->
+    <div class="section-heading">
+        <h2>Leaderboard Overview</h2>
+        <p>Quick information about the current rankings.</p>
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <span>Ranked Players</span>
+            <strong id="rankedPlayersCount">--</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Your Rank</span>
+            <strong id="currentPlayerRank">--</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Your Rating</span>
+            <strong id="leaderboardPlayerRating">--</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Ranking Updates</span>
+            <strong id="leaderboardUpdateStatus">--</strong>
+        </div>
+
+    </div>
+
+
+    <!-- TOP THREE PLAYERS -->
+    <div class="section-heading">
+        <h2>Top Players</h2>
+        <p>Meet the current highest-ranked players.</p>
+    </div>
+
+
+    <div class="leaderboard-podium" id="leaderboardPodium">
+
+        <div class="podium-placeholder">
+
+            <div class="placeholder-icon">👑</div>
+
+            <h3>Top Players Will Appear Here</h3>
+
+            <p>
+                Verified player ranking data will be displayed
+                when the leaderboard system is connected.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- LEADERBOARD FILTERS -->
+    <div class="section-heading">
+        <h2>Player Rankings</h2>
+        <p>Explore different ranking categories.</p>
+    </div>
+
+
+    <div class="leaderboard-filter-bar">
+
+        <button
+            class="leaderboard-filter active"
+            data-leaderboard-filter="global"
+        >
+            Global
+        </button>
+
+        <button
+            class="leaderboard-filter"
+            data-leaderboard-filter="friends"
+        >
+            Friends
+        </button>
+
+        <button
+            class="leaderboard-filter"
+            data-leaderboard-filter="weekly"
+        >
+            Weekly
+        </button>
+
+        <button
+            class="leaderboard-filter"
+            data-leaderboard-filter="monthly"
+        >
+            Monthly
+        </button>
+
+        <button
+            class="leaderboard-filter"
+            data-leaderboard-filter="puzzles"
+        >
+            Puzzle Rankings
+        </button>
+
+    </div>
+
+
+    <!-- RANKING SEARCH -->
+    <div class="leaderboard-toolbar">
+
+        <div class="leaderboard-search">
+
+            <span>⌕</span>
+
+            <input
+                type="search"
+                id="leaderboardSearch"
+                placeholder="Search player username..."
+            >
+
+        </div>
+
+
+        <select id="leaderboardSort">
+
+            <option value="rating">Sort by Rating</option>
+
+            <option value="wins">Sort by Wins</option>
+
+            <option value="games">Sort by Games</option>
+
+            <option value="puzzles">Sort by Puzzles</option>
+
+        </select>
+
+    </div>
+
+
+    <!-- LEADERBOARD TABLE -->
+    <div class="leaderboard-table-container">
+
+        <table class="leaderboard-table">
+
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Rating</th>
+                    <th>Wins</th>
+                    <th>Games</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+
+
+            <tbody id="leaderboardTableBody">
+
+                <tr>
+                    <td colspan="6">
+
+                        <div class="leaderboard-empty-state">
+
+                            <div class="placeholder-icon">♟</div>
+
+                            <h3>No Ranking Data Available</h3>
+
+                            <p>
+                                Connect the player accounts and ranking
+                                system to display verified results here.
+                            </p>
+
+                        </div>
+
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- YOUR RANK -->
+    <div class="section-heading">
+        <h2>Your Position</h2>
+        <p>Your personal standing in the leaderboard.</p>
+    </div>
+
+
+    <div class="your-rank-card">
+
+        <div class="your-rank-avatar">
+            ♟
+        </div>
+
+        <div class="your-rank-info">
+
+            <span class="eyebrow">YOUR PLAYER PROFILE</span>
+
+            <h3 id="leaderboardUsername">Your Username</h3>
+
+            <p id="leaderboardRankDescription">
+                Play games and complete training to build your ranking.
+            </p>
+
+        </div>
+
+
+        <div class="your-rank-number">
+
+            <span>YOUR RANK</span>
+
+            <strong id="yourRankNumber">--</strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- RANKING SYSTEM INFORMATION -->
+    <div class="section-heading">
+        <h2>How Rankings Work</h2>
+        <p>Understand the different ways players are ranked.</p>
+    </div>
+
+
+    <div class="ranking-info-grid">
+
+        <article class="ranking-info-card">
+
+            <div class="ranking-info-icon">♟</div>
+
+            <h3>Chess Rating</h3>
+
+            <p>
+                Competitive rating based on eligible game results
+                and the selected rating system.
+            </p>
+
+        </article>
+
+
+        <article class="ranking-info-card">
+
+            <div class="ranking-info-icon">🏆</div>
+
+            <h3>Game Performance</h3>
+
+            <p>
+                Compare completed games, wins and other
+                recorded match statistics.
+            </p>
+
+        </article>
+
+
+        <article class="ranking-info-card">
+
+            <div class="ranking-info-icon">🧩</div>
+
+            <h3>Puzzle Performance</h3>
+
+            <p>
+                Compare puzzle ratings, solved puzzles
+                and accuracy in supported challenges.
+            </p>
+
+        </article>
+
+
+        <article class="ranking-info-card">
+
+            <div class="ranking-info-icon">📅</div>
+
+            <h3>Season Rankings</h3>
+
+            <p>
+                Explore rankings for defined weekly
+                and monthly competition periods.
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <!-- RANKING PRIVACY -->
+    <div class="leaderboard-privacy-card">
+
+        <div class="privacy-icon">🔒</div>
+
+        <div>
+            <h3>Your Privacy Matters</h3>
+
+            <p>
+                Leaderboard participation should use a public
+                username. Personal information such as email,
+                password and private account details must never
+                appear in public rankings.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- LEADERBOARD FOOTER -->
+    <div class="leaderboard-footer-card">
+
+        <div>
+            <span class="eyebrow">YOUR NEXT CHALLENGE</span>
+
+            <h2>Focus on Improvement, Not Just Rank.</h2>
+
+            <p>
+                Build your skills, play thoughtfully
+                and let your progress speak for itself.
+            </p>
+        </div>
+
+        <button
+            class="primary-button"
+            data-goto="play"
+        >
+            Enter Chess Arena →
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- END OF PAGE 13: LEADERBOARD -->
+<!-- ========================================= -->
+
+<!-- ========================================= -->
+<!-- PAGE 14: FRIENDS -->
+<!-- ========================================= -->
+
+<section class="page" id="page-friends">
+
+    <!-- PAGE HEADING -->
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">PLAY TOGETHER</span>
+            <h1>Friends</h1>
+            <p>Connect with chess players, challenge friends and learn together.</p>
+        </div>
+    </div>
+
+
+    <!-- FRIENDS HERO -->
+    <div class="friends-hero">
+
+        <div class="friends-hero-content">
+            <span class="status-label">YOUR CHESS COMMUNITY</span>
+
+            <h2>Chess Is Better Together.</h2>
+
+            <p>
+                Find players, build your chess circle,
+                share friendly challenges and improve together.
+            </p>
+
+            <button
+                class="primary-button"
+                data-friends-action="find"
+            >
+                Find Friends →
+            </button>
+        </div>
+
+        <div class="friends-hero-icon">
+            ♟
+        </div>
+
+    </div>
+
+
+    <!-- FRIENDS OVERVIEW -->
+    <div class="section-heading">
+        <h2>Your Community</h2>
+        <p>A quick overview of your chess connections.</p>
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <span>Total Friends</span>
+            <strong id="totalFriendsCount">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Online Friends</span>
+            <strong id="onlineFriendsCount">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Pending Requests</span>
+            <strong id="pendingRequestsCount">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Challenges Received</span>
+            <strong id="receivedChallengesCount">0</strong>
+        </div>
+
+    </div>
+
+
+    <!-- FIND FRIENDS -->
+    <div class="section-heading" id="findFriendsSection">
+        <h2>Find Chess Players</h2>
+        <p>Search using a public username.</p>
+    </div>
+
+
+    <div class="find-friends-card">
+
+        <div class="find-friends-content">
+
+            <div class="find-friends-icon">⌕</div>
+
+            <h3>Discover New Players</h3>
+
+            <p>
+                Search for chess players by their public username
+                and send them a friend request.
+            </p>
+
+        </div>
+
+
+        <form id="friendSearchForm" class="friend-search-form">
+
+            <input
+                type="search"
+                id="friendSearchInput"
+                placeholder="Enter player username..."
+                autocomplete="off"
+                maxlength="30"
+            >
+
+            <button
+                type="submit"
+                class="primary-button"
+            >
+                Search Players
+            </button>
+
+        </form>
+
+
+        <div id="friendSearchResults" class="friend-search-results">
+
+            <div class="friend-search-placeholder">
+                <span>👥</span>
+                <p>Search results will appear here.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FRIEND REQUESTS -->
+    <div class="section-heading">
+        <h2>Friend Requests</h2>
+        <p>Manage incoming and outgoing connection requests.</p>
+    </div>
+
+
+    <div class="friend-requests-grid">
+
+        <div class="friend-request-panel">
+
+            <div class="panel-header">
+                <h3>Received Requests</h3>
+                <span class="request-count" id="receivedRequestBadge">0</span>
+            </div>
+
+            <div id="receivedFriendRequests">
+
+                <div class="friend-empty-state">
+                    <div class="placeholder-icon">📨</div>
+
+                    <h3>No New Requests</h3>
+
+                    <p>
+                        New friend requests will appear here.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="friend-request-panel">
+
+            <div class="panel-header">
+                <h3>Sent Requests</h3>
+                <span class="request-count" id="sentRequestBadge">0</span>
+            </div>
+
+            <div id="sentFriendRequests">
+
+                <div class="friend-empty-state">
+                    <div class="placeholder-icon">📤</div>
+
+                    <h3>No Pending Requests</h3>
+
+                    <p>
+                        Requests you send will appear here.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MY FRIENDS -->
+    <div class="section-heading">
+        <h2>My Friends</h2>
+        <p>Your connected chess players.</p>
+    </div>
+
+
+    <div class="friends-toolbar">
+
+        <div class="friends-search-box">
+            <span>⌕</span>
+
+            <input
+                type="search"
+                id="myFriendsSearch"
+                placeholder="Search your friends..."
+            >
+        </div>
+
+
+        <select id="friendsStatusFilter">
+            <option value="all">All Friends</option>
+            <option value="online">Online</option>
+            <option value="offline">Offline</option>
+        </select>
+
+    </div>
+
+
+    <div class="friends-grid" id="myFriendsList">
+
+        <div class="friends-empty-state">
+
+            <div class="placeholder-icon">♟</div>
+
+            <h3>Your Chess Circle Starts Here</h3>
+
+            <p>
+                Add players to your friends list
+                to see them here.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FRIEND CHALLENGES -->
+    <div class="section-heading">
+        <h2>Match Challenges</h2>
+        <p>Challenge friends to a friendly chess match.</p>
+    </div>
+
+
+    <div class="friend-challenge-card">
+
+        <div class="challenge-card-header">
+
+            <div>
+                <h3>Challenge a Friend</h3>
+                <p>Choose your preferred game settings.</p>
+            </div>
+
+            <div class="challenge-icon">⚔</div>
+
+        </div>
+
+
+        <form id="friendChallengeForm">
+
+            <div class="challenge-form-grid">
+
+                <div class="form-group">
+
+                    <label for="challengeOpponent">
+                        Opponent
+                    </label>
+
+                    <input
+                        type="text"
+                        id="challengeOpponent"
+                        placeholder="Friend username..."
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="challengeTimeControl">
+                        Time Control
+                    </label>
+
+                    <select id="challengeTimeControl">
+
+                        <option value="bullet">Bullet – 1 minute</option>
+
+                        <option value="blitz" selected>
+                            Blitz – 5 minutes
+                        </option>
+
+                        <option value="rapid">
+                            Rapid – 10 minutes
+                        </option>
+
+                        <option value="classical">
+                            Classical – 30 minutes
+                        </option>
+
+                        <option value="unlimited">
+                            Unlimited
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="challengeColor">
+                        Your Color
+                    </label>
+
+                    <select id="challengeColor">
+
+                        <option value="random">Random</option>
+
+                        <option value="white">White</option>
+
+                        <option value="black">Black</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="primary-button"
+            >
+                Send Match Challenge →
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- RECEIVED CHALLENGES -->
+    <div class="section-heading">
+        <h2>Received Challenges</h2>
+        <p>View invitations from your friends.</p>
+    </div>
+
+
+    <div class="received-challenges-container" id="receivedChallengesList">
+
+        <div class="friend-empty-state">
+
+            <div class="placeholder-icon">⚔</div>
+
+            <h3>No Active Challenges</h3>
+
+            <p>
+                Incoming match invitations will appear here.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FRIEND ACTIVITY -->
+    <div class="section-heading">
+        <h2>Friends Activity</h2>
+        <p>See recent chess activity shared by your friends.</p>
+    </div>
+
+
+    <div class="friends-activity-card" id="friendsActivityFeed">
+
+        <div class="friend-empty-state">
+
+            <div class="placeholder-icon">📡</div>
+
+            <h3>No Recent Activity</h3>
+
+            <p>
+                Shared chess activity will appear here
+                when the community system is connected.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- COMMUNITY GUIDELINES -->
+    <div class="friends-safety-card">
+
+        <div class="privacy-icon">🔒</div>
+
+        <div>
+            <h3>Play Safely. Respect Everyone.</h3>
+
+            <p>
+                Connect using public usernames. Never share passwords,
+                private contact details or sensitive personal information.
+                Treat every player respectfully and report inappropriate behaviour.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- FRIENDS FOOTER -->
+    <div class="friends-footer-card">
+
+        <div>
+            <span class="eyebrow">BUILD YOUR CHESS COMMUNITY</span>
+
+            <h2>Find Friends. Share Knowledge. Play Better.</h2>
+
+            <p>
+                Great chess journeys become even more enjoyable
+                when you learn and compete together.
+            </p>
+        </div>
+
+        <button
+            class="primary-button"
+            data-goto="play"
+        >
+            Go to Chess Arena →
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- END OF PAGE 14: FRIENDS -->
+<!-- ========================================= -->
+
+<!-- ========================================= -->
+<!-- PAGE 15: TOURNAMENTS -->
+<!-- ========================================= -->
+
+<section class="page" id="page-tournaments">
+
+    <!-- PAGE HEADING -->
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">COMPETE · LEARN · ACHIEVE</span>
+            <h1>Tournaments</h1>
+            <p>Discover chess competitions, participate in events and challenge your skills.</p>
+        </div>
+    </div>
+
+
+    <!-- TOURNAMENT HERO -->
+    <div class="tournament-hero">
+
+        <div class="tournament-hero-content">
+
+            <span class="status-label">ARIONZ CHESS ARENA</span>
+
+            <h2>Your Next Challenge Awaits.</h2>
+
+            <p>
+                Explore tournaments, test your chess knowledge,
+                compete with other players and gain valuable experience.
+            </p>
+
+            <button
+                class="primary-button"
+                data-tournament-filter="upcoming"
+            >
+                Explore Tournaments →
+            </button>
+
+        </div>
+
+        <div class="tournament-hero-icon">
+            🏆
+        </div>
+
+    </div>
+
+
+    <!-- TOURNAMENT OVERVIEW -->
+    <div class="section-heading">
+        <h2>Tournament Overview</h2>
+        <p>Your competition dashboard.</p>
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <span>Available Tournaments</span>
+            <strong id="availableTournaments">--</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>My Registrations</span>
+            <strong id="myTournamentRegistrations">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Completed Events</span>
+            <strong id="completedTournaments">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Podium Finishes</span>
+            <strong id="tournamentPodiumFinishes">0</strong>
+        </div>
+
+    </div>
+
+
+    <!-- TOURNAMENT CATEGORIES -->
+    <div class="section-heading">
+        <h2>Competition Categories</h2>
+        <p>Choose the tournament format you enjoy.</p>
+    </div>
+
+
+    <div class="tournament-category-grid">
+
+        <article class="tournament-category-card">
+
+            <div class="tournament-category-icon">⚡</div>
+
+            <h3>Bullet</h3>
+
+            <p>
+                Fast-paced chess with very limited time.
+            </p>
+
+            <button
+                class="secondary-button"
+                data-tournament-format="bullet"
+            >
+                Explore Bullet
+            </button>
+
+        </article>
+
+
+        <article class="tournament-category-card">
+
+            <div class="tournament-category-icon">🔥</div>
+
+            <h3>Blitz</h3>
+
+            <p>
+                Quick games that test calculation and decision-making.
+            </p>
+
+            <button
+                class="secondary-button"
+                data-tournament-format="blitz"
+            >
+                Explore Blitz
+            </button>
+
+        </article>
+
+
+        <article class="tournament-category-card">
+
+            <div class="tournament-category-icon">🧠</div>
+
+            <h3>Rapid</h3>
+
+            <p>
+                More time to calculate and plan your strategy.
+            </p>
+
+            <button
+                class="secondary-button"
+                data-tournament-format="rapid"
+            >
+                Explore Rapid
+            </button>
+
+        </article>
+
+
+        <article class="tournament-category-card">
+
+            <div class="tournament-category-icon">♟</div>
+
+            <h3>Classical</h3>
+
+            <p>
+                Longer matches focused on deep understanding.
+            </p>
+
+            <button
+                class="secondary-button"
+                data-tournament-format="classical"
+            >
+                Explore Classical
+            </button>
+
+        </article>
+
+    </div>
+
+
+    <!-- TOURNAMENT FILTERS -->
+    <div class="section-heading">
+        <h2>Explore Tournaments</h2>
+        <p>Find competitions that match your interests.</p>
+    </div>
+
+
+    <div class="tournament-filter-bar">
+
+        <button
+            class="tournament-filter active"
+            data-tournament-filter="all"
+        >
+            All Events
+        </button>
+
+        <button
+            class="tournament-filter"
+            data-tournament-filter="upcoming"
+        >
+            Upcoming
+        </button>
+
+        <button
+            class="tournament-filter"
+            data-tournament-filter="live"
+        >
+            Live
+        </button>
+
+        <button
+            class="tournament-filter"
+            data-tournament-filter="completed"
+        >
+            Completed
+        </button>
+
+    </div>
+
+
+    <!-- TOURNAMENT SEARCH -->
+    <div class="tournament-toolbar">
+
+        <div class="tournament-search">
+
+            <span>⌕</span>
+
+            <input
+                type="search"
+                id="tournamentSearch"
+                placeholder="Search tournament..."
+            >
+
+        </div>
+
+
+        <select id="tournamentFormatFilter">
+
+            <option value="all">All Formats</option>
+
+            <option value="bullet">Bullet</option>
+
+            <option value="blitz">Blitz</option>
+
+            <option value="rapid">Rapid</option>
+
+            <option value="classical">Classical</option>
+
+        </select>
+
+
+        <select id="tournamentLevelFilter">
+
+            <option value="all">All Skill Levels</option>
+
+            <option value="beginner">Beginner</option>
+
+            <option value="intermediate">Intermediate</option>
+
+            <option value="advanced">Advanced</option>
+
+            <option value="open">Open</option>
+
+        </select>
+
+    </div>
+
+
+    <!-- TOURNAMENT LIST -->
+    <div
+        class="tournament-list"
+        id="tournamentList"
+    >
+
+        <div class="tournament-empty-state">
+
+            <div class="placeholder-icon">🏆</div>
+
+            <h3>No Tournaments Available Yet</h3>
+
+            <p>
+                Verified tournament listings will appear here
+                when the tournament service is connected.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- MY TOURNAMENTS -->
+    <div class="section-heading">
+        <h2>My Tournaments</h2>
+        <p>Keep track of competitions you have joined.</p>
+    </div>
+
+
+    <div
+        class="my-tournaments-container"
+        id="myTournamentsList"
+    >
+
+        <div class="tournament-empty-state">
+
+            <div class="placeholder-icon">📋</div>
+
+            <h3>No Registered Tournaments</h3>
+
+            <p>
+                Tournaments you register for will appear here.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOURNAMENT FORMAT EXPLAINER -->
+    <div class="section-heading">
+        <h2>Understand Tournament Formats</h2>
+        <p>Learn how different competition systems work.</p>
+    </div>
+
+
+    <div class="tournament-format-grid">
+
+        <article class="format-info-card">
+
+            <div class="format-info-icon">🔄</div>
+
+            <h3>Round Robin</h3>
+
+            <p>
+                Every participant plays against every other
+                participant in the group.
+            </p>
+
+        </article>
+
+
+        <article class="format-info-card">
+
+            <div class="format-info-icon">⚔</div>
+
+            <h3>Swiss System</h3>
+
+            <p>
+                Players compete across multiple rounds
+                against opponents with similar scores.
+            </p>
+
+        </article>
+
+
+        <article class="format-info-card">
+
+            <div class="format-info-icon">🏅</div>
+
+            <h3>Knockout</h3>
+
+            <p>
+                Players advance through elimination rounds
+                until the final winner is determined.
+            </p>
+
+        </article>
+
+
+        <article class="format-info-card">
+
+            <div class="format-info-icon">👥</div>
+
+            <h3>Team Tournament</h3>
+
+            <p>
+                Players compete as members of teams
+                and contribute to their team's result.
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <!-- TOURNAMENT RULES -->
+    <div class="section-heading">
+        <h2>Tournament Guidelines</h2>
+        <p>Important information before entering a competition.</p>
+    </div>
+
+
+    <div class="tournament-guidelines-card">
+
+        <div class="guideline-item">
+
+            <span class="guideline-number">01</span>
+
+            <div>
+                <h3>Check Eligibility</h3>
+
+                <p>
+                    Review the tournament's age, rating
+                    and participation requirements.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="guideline-item">
+
+            <span class="guideline-number">02</span>
+
+            <div>
+                <h3>Understand the Time Control</h3>
+
+                <p>
+                    Check the clock settings and tournament
+                    schedule before joining.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="guideline-item">
+
+            <span class="guideline-number">03</span>
+
+            <div>
+                <h3>Follow Fair Play</h3>
+
+                <p>
+                    Do not use unauthorized assistance,
+                    engines or external tools during games.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="guideline-item">
+
+            <span class="guideline-number">04</span>
+
+            <div>
+                <h3>Respect Other Players</h3>
+
+                <p>
+                    Follow competition rules and maintain
+                    respectful behaviour.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOURNAMENT LEADERBOARD -->
+    <div class="section-heading">
+        <h2>Tournament Standings</h2>
+        <p>Follow the results of selected competitions.</p>
+    </div>
+
+
+    <div class="tournament-standings-container">
+
+        <div class="panel-header">
+
+            <div>
+                <h3>Current Standings</h3>
+                <p>Official results will appear after competition data is connected.</p>
+            </div>
+
+            <span class="status-label">RANKINGS</span>
+
+        </div>
+
+
+        <table class="tournament-standings-table">
+
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Played</th>
+                    <th>Points</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+
+
+            <tbody id="tournamentStandings">
+
+                <tr>
+                    <td colspan="5" class="empty-table-message">
+                        No tournament standings available.
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- TOURNAMENT FOOTER -->
+    <div class="tournament-footer-card">
+
+        <div>
+            <span class="eyebrow">YOUR NEXT COMPETITION</span>
+
+            <h2>Prepare. Participate. Progress.</h2>
+
+            <p>
+                Every tournament is an opportunity
+                to test your preparation and learn.
+            </p>
+        </div>
+
+        <button
+            class="primary-button"
+            data-goto="play"
+        >
+            Practice in Chess Arena →
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- END OF PAGE 15: TOURNAMENTS -->
+<!-- ========================================= -->
+
+<!-- ========================================= -->
+<!-- PAGE 16: PROFILE & SETTINGS -->
+<!-- ========================================= -->
+
+<section class="page" id="page-profile">
+
+    <!-- PAGE HEADING -->
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">YOUR PERSONAL SPACE</span>
+            <h1>Profile & Settings</h1>
+            <p>Manage your chess identity, preferences and account experience.</p>
+        </div>
+    </div>
+
+
+    <!-- PROFILE HERO -->
+    <div class="profile-hero">
+
+        <div class="profile-hero-content">
+
+            <span class="status-label">PLAYER PROFILE</span>
+
+            <div class="profile-main-info">
+
+                <div class="profile-avatar" id="profileAvatar">
+                    ♟
+                </div>
+
+                <div>
+                    <h2 id="profileDisplayName">Chess Player</h2>
+                    <p id="profileUsername">@username</p>
+
+                    <span class="profile-member-label">
+                        ARIONZ CHESS MEMBER
+                    </span>
+                </div>
+
+            </div>
+
+            <p>
+                Your chess identity represents your journey,
+                achievements and personal development.
+            </p>
+
+        </div>
+
+        <div class="profile-hero-icon">
+            👑
+        </div>
+
+    </div>
+
+
+    <!-- PROFILE STATISTICS -->
+    <div class="section-heading">
+        <h2>Profile Overview</h2>
+        <p>Your personal chess statistics.</p>
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <span>Games Played</span>
+            <strong id="profileGamesPlayed">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Current Rating</span>
+            <strong id="profileRating">--</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Achievements</span>
+            <strong id="profileAchievements">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Member Since</span>
+            <strong id="profileMemberSince">--</strong>
+        </div>
+
+    </div>
+
+
+    <!-- EDIT PROFILE -->
+    <div class="section-heading">
+        <h2>Edit Profile</h2>
+        <p>Personalize how other players see your chess profile.</p>
+    </div>
+
+
+    <div class="profile-settings-card">
+
+        <div class="panel-header">
+            <div>
+                <h3>Basic Information</h3>
+                <p>Manage your public player information.</p>
+            </div>
+
+            <span class="status-label">PROFILE</span>
+        </div>
+
+
+        <form id="editProfileForm">
+
+            <div class="profile-form-grid">
+
+                <div class="form-group">
+                    <label for="profileNameInput">
+                        Display Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="profileNameInput"
+                        placeholder="Enter your display name"
+                        maxlength="40"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="profileUsernameInput">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="profileUsernameInput"
+                        placeholder="Enter your username"
+                        maxlength="30"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="profileBioInput">
+                        Short Bio
+                    </label>
+
+                    <textarea
+                        id="profileBioInput"
+                        placeholder="Write something about your chess journey..."
+                        rows="4"
+                        maxlength="200"
+                    ></textarea>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="profileCountryInput">
+                        Country
+                    </label>
+
+                    <select id="profileCountryInput">
+
+                        <option value="">Select Country</option>
+                        <option value="India">India</option>
+                        <option value="United States">United States</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="France">France</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Other">Other</option>
+
+                    </select>
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="primary-button"
+                id="saveProfileButton"
+            >
+                Save Profile
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- CHESS PREFERENCES -->
+    <div class="section-heading">
+        <h2>Chess Preferences</h2>
+        <p>Customize your preferred way to play chess.</p>
+    </div>
+
+
+    <div class="profile-settings-card">
+
+        <div class="panel-header">
+            <div>
+                <h3>Game Preferences</h3>
+                <p>Choose your default chess experience.</p>
+            </div>
+        </div>
+
+
+        <div class="settings-options-grid">
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Default Game Mode</h3>
+                    <p>Choose your preferred playing mode.</p>
+                </div>
+
+                <select id="preferredGameMode">
+                    <option value="play">Play & Analyze</option>
+                    <option value="live">Live Coach</option>
+                    <option value="learn">Learn First</option>
+                </select>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Preferred Side</h3>
+                    <p>Choose your default board orientation.</p>
+                </div>
+
+                <select id="preferredColor">
+                    <option value="white">White</option>
+                    <option value="black">Black</option>
+                    <option value="random">Random</option>
+                </select>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Difficulty Preference</h3>
+                    <p>Set your preferred training level.</p>
+                </div>
+
+                <select id="preferredDifficulty">
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Move Confirmation</h3>
+                    <p>Ask before confirming a chess move.</p>
+                </div>
+
+                <label class="settings-switch">
+                    <input
+                        type="checkbox"
+                        id="moveConfirmationSetting"
+                    >
+                    <span class="settings-switch-slider"></span>
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOARD APPEARANCE -->
+    <div class="section-heading">
+        <h2>Board Appearance</h2>
+        <p>Customize the visual appearance of your chessboard.</p>
+    </div>
+
+
+    <div class="profile-settings-card">
+
+        <div class="panel-header">
+            <div>
+                <h3>Board Customization</h3>
+                <p>Choose your visual preferences.</p>
+            </div>
+        </div>
+
+
+        <div class="settings-options-grid">
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Board Theme</h3>
+                    <p>Select your preferred chessboard colors.</p>
+                </div>
+
+                <select id="boardThemeSetting">
+
+                    <option value="classic">Classic</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Ocean Blue</option>
+                    <option value="dark">Dark</option>
+                    <option value="wood">Wood</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Piece Style</h3>
+                    <p>Choose the appearance of chess pieces.</p>
+                </div>
+
+                <select id="pieceStyleSetting">
+
+                    <option value="classic">Classic</option>
+                    <option value="minimal">Minimal</option>
+                    <option value="modern">Modern</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Board Coordinates</h3>
+                    <p>Show letters and numbers around the board.</p>
+                </div>
+
+                <label class="settings-switch">
+                    <input
+                        type="checkbox"
+                        id="boardCoordinatesSetting"
+                        checked
+                    >
+                    <span class="settings-switch-slider"></span>
+                </label>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Move Highlighting</h3>
+                    <p>Highlight the previous and possible moves.</p>
+                </div>
+
+                <label class="settings-switch">
+                    <input
+                        type="checkbox"
+                        id="moveHighlightSetting"
+                        checked
+                    >
+                    <span class="settings-switch-slider"></span>
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- COACH PREFERENCES -->
+    <div class="section-heading">
+        <h2>AI Coach Preferences</h2>
+        <p>Personalize how your chess assistant communicates.</p>
+    </div>
+
+
+    <div class="profile-settings-card">
+
+        <div class="panel-header">
+            <div>
+                <h3>Coach Configuration</h3>
+                <p>Customize explanations and learning assistance.</p>
+            </div>
+
+            <span class="status-label">AI COACH</span>
+        </div>
+
+
+        <div class="settings-options-grid">
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Explanation Level</h3>
+                    <p>Choose how detailed the coach's explanations should be.</p>
+                </div>
+
+                <select id="coachExplanationLevel">
+
+                    <option value="simple">Simple</option>
+                    <option value="balanced" selected>Balanced</option>
+                    <option value="detailed">Detailed</option>
+                    <option value="advanced">Advanced</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Coaching Style</h3>
+                    <p>Choose the way the assistant teaches you.</p>
+                </div>
+
+                <select id="coachStyleSetting">
+
+                    <option value="friendly">Friendly Teacher</option>
+                    <option value="analytical">Analytical</option>
+                    <option value="direct">Direct & Concise</option>
+                    <option value="stepbystep">Step-by-Step</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Explain Every Move</h3>
+                    <p>Show an explanation after each move.</p>
+                </div>
+
+                <label class="settings-switch">
+                    <input
+                        type="checkbox"
+                        id="explainMovesSetting"
+                        checked
+                    >
+                    <span class="settings-switch-slider"></span>
+                </label>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Show Alternative Moves</h3>
+                    <p>Include other possible strategic choices.</p>
+                </div>
+
+                <label class="settings-switch">
+                    <input
+                        type="checkbox"
+                        id="alternativeMovesSetting"
+                        checked
+                    >
+                    <span class="settings-switch-slider"></span>
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTIFICATIONS -->
+    <div class="section-heading">
+        <h2>Notifications</h2>
+        <p>Manage which updates you receive.</p>
+    </div>
+
+
+    <div class="profile-settings-card">
+
+        <div class="panel-header">
+            <div>
+                <h3>Notification Preferences</h3>
+                <p>Choose the updates that matter to you.</p>
+            </div>
+        </div>
+
+
+        <div class="settings-options-grid">
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Daily Chess Reminder</h3>
+                    <p>Receive a reminder for your practice routine.</p>
+                </div>
+
+                <label class="settings-switch">
+                    <input
+                        type="checkbox"
+                        id="dailyReminderSetting"
+                    >
+                    <span class="settings-switch-slider"></span>
+                </label>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Friend Activity</h3>
+                    <p>Receive updates about friend activity.</p>
+                </div>
+
+                <label class="settings-switch">
+                    <input
+                        type="checkbox"
+                        id="friendNotificationsSetting"
+                        checked
+                    >
+                    <span class="settings-switch-slider"></span>
+                </label>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Tournament Updates</h3>
+                    <p>Get notifications about joined tournaments.</p>
+                </div>
+
+                <label class="settings-switch">
+                    <input
+                        type="checkbox"
+                        id="tournamentNotificationsSetting"
+                        checked
+                    >
+                    <span class="settings-switch-slider"></span>
+                </label>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Achievement Notifications</h3>
+                    <p>Get notified when you unlock achievements.</p>
+                </div>
+
+                <label class="settings-switch">
+                    <input
+                        type="checkbox"
+                        id="achievementNotificationsSetting"
+                        checked
+                    >
+                    <span class="settings-switch-slider"></span>
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PRIVACY -->
+    <div class="section-heading">
+        <h2>Privacy & Security</h2>
+        <p>Control the visibility of your public chess profile.</p>
+    </div>
+
+
+    <div class="profile-settings-card">
+
+        <div class="panel-header">
+            <div>
+                <h3>Privacy Controls</h3>
+                <p>Choose what other players can see.</p>
+            </div>
+
+            <span class="status-label">SECURITY</span>
+        </div>
+
+
+        <div class="settings-options-grid">
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Public Profile</h3>
+                    <p>Allow other players to view your public profile.</p>
+                </div>
+
+                <label class="settings-switch">
+                    <input
+                        type="checkbox"
+                        id="publicProfileSetting"
+                        checked
+                    >
+                    <span class="settings-switch-slider"></span>
+                </label>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Show Game History</h3>
+                    <p>Allow others to see your public game records.</p>
+                </div>
+
+                <label class="settings-switch">
+                    <input
+                        type="checkbox"
+                        id="publicHistorySetting"
+                    >
+                    <span class="settings-switch-slider"></span>
+                </label>
+
+            </div>
+
+
+            <div class="setting-option">
+
+                <div>
+                    <h3>Allow Friend Requests</h3>
+                    <p>Allow other players to send you requests.</p>
+                </div>
+
+                <label class="settings-switch">
+                    <input
+                        type="checkbox"
+                        id="friendRequestsSetting"
+                        checked
+                    >
+                    <span class="settings-switch-slider"></span>
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="privacy-information">
+
+            <span>🔒</span>
+
+            <p>
+                Never display passwords, authentication tokens,
+                private contact information or other sensitive
+                account details on your public profile.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- DATA MANAGEMENT -->
+    <div class="section-heading">
+        <h2>Data Management</h2>
+        <p>Manage your chess records and personal settings.</p>
+    </div>
+
+
+    <div class="profile-settings-card">
+
+        <div class="data-management-item">
+
+            <div>
+                <h3>Export My Chess Data</h3>
+                <p>Download your available game records and profile data.</p>
+            </div>
+
+            <button
+                class="secondary-button"
+                id="exportMyDataButton"
+            >
+                Export Data
+            </button>
+
+        </div>
+
+
+        <div class="data-management-item">
+
+            <div>
+                <h3>Reset Preferences</h3>
+                <p>Restore your interface and chess preferences to defaults.</p>
+            </div>
+
+            <button
+                class="secondary-button"
+                id="resetPreferencesButton"
+            >
+                Reset Settings
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- SAVE SETTINGS -->
+    <div class="profile-save-card">
+
+        <div>
+            <span class="eyebrow">PERSONALIZE YOUR EXPERIENCE</span>
+
+            <h2>Make Chess Yours.</h2>
+
+            <p>
+                Save your preferences and enjoy a chess experience
+                built around your learning style.
+            </p>
+        </div>
+
+
+        <button
+            class="primary-button"
+            id="saveAllSettingsButton"
+        >
+            Save All Settings →
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- END OF PAGE 16: PROFILE & SETTINGS -->
+<!-- ========================================= -->
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST NOTIFICATIONS -->
+
+<div id="toastRegion" class="toast-region" aria-live="polite"></div>
+
+
+<!-- SETTINGS DIALOG -->
+
+<dialog id="settingsDialog" class="settings-dialog">
+
+    <div class="settings-header">
+        <h2>Settings</h2>
+        <button id="closeSettings" class="icon-button">✕</button>
+    </div>
+
+    <div class="settings-content">
+        <label for="boardOrientation">Board Orientation</label>
+        <select id="boardOrientation">
+            <option value="white">White at Bottom</option>
+            <option value="black">Black at Bottom</option>
+        </select>
+    </div>
+
+</dialog>
+
+
+<!-- APPLICATION JAVASCRIPT -->
+
+<script src="app.js"></script>
+
+</body>
+</html>
